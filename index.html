@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FINEL — Buxgalteriya, 1C, Excel, Soliq</title>
+<meta name="description" content="FINEL — biznesingiz uchun ishonchli buxgalteriya, soliq va moliyaviy maslahat xizmatlari.">
+<link rel="icon" type="image/png" href="logo-icon.png">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #05070c;
+  --bg2: #0a0e15;
+  --surface: #0f141d;
+  --surface2: #151b26;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --text: #f5f7fa;
+  --text-dim: rgba(245,247,250,0.62);
+  --accent: #3b82f6;
+  --accent2: #60a5fa;
+  --green: #22c55e;
+  --header-bg: rgba(5,7,12,0.72);
+  --grid-line: rgba(255,255,255,0.028);
+  --thumb: #1c2330;
+  --thumb-h: #28324a;
+}
+html.light {
+  --bg: #f6f8fb;
+  --bg2: #edf1f7;
+  --surface: #ffffff;
+  --surface2: #f0f4fa;
+  --border: rgba(15,30,60,0.10);
+  --border-strong: rgba(15,30,60,0.18);
+  --text: #0c1626;
+  --text-dim: rgba(12,22,38,0.64);
+  --accent: #2563eb;
+  --accent2: #3b82f6;
+  --header-bg: rgba(255,255,255,0.78);
+  --grid-line: rgba(15,30,60,0.05);
+  --thumb: #c6d2e3;
+  --thumb-h: #a9bad2;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden;transition:background .3s,color .3s;}
+::selection{background:rgba(59,130,246,.4);}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--thumb);border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--thumb-h)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+
+/* HEADER */
+header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 48px;position:sticky;top:0;z-index:1000;
+  background:var(--header-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.logo{display:flex;align-items:center;gap:11px;}
+.logo img{
+  height:50px;width:50px;object-fit:cover;border-radius:50%;display:block;
+  border:2px solid var(--accent2);
+  box-shadow:0 4px 14px rgba(59,130,246,.3);
+}
+.logo-word{font-size:18px;font-weight:800;letter-spacing:2px;color:var(--text);}
+
+nav{display:flex;gap:30px;}
+nav a{text-decoration:none;color:var(--text-dim);font-weight:500;font-size:14px;transition:color .2s;}
+nav a:hover{color:var(--text);}
+
+.controls{display:flex;gap:8px;align-items:center}
+.btn{
+  padding:7px 11px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:transparent;
+  color:var(--text-dim);font-size:12px;font-weight:700;
+  font-family:'Inter',sans-serif;transition:.2s;
+}
+.btn:hover{border-color:var(--accent);color:var(--text);}
+.btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.theme-btn{
+  width:36px;height:36px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text-dim);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:15px;transition:.2s;
+}
+.theme-btn:hover{border-color:var(--accent);color:var(--text);}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;background:var(--accent);
+  color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:.2s;
+  box-shadow:0 4px 16px rgba(59,130,246,.35);white-space:nowrap;
+}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);}
+.menu-toggle{
+  display:none;width:38px;height:38px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text);align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;
+}
+
+/* HERO */
+.hero{
+  position:relative;padding:120px 24px 100px;text-align:center;
+  max-width:1060px;margin:0 auto;
+}
+.hero::before{
+  content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);
+  width:920px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.18),transparent 70%);
+  filter:blur(30px);pointer-events:none;z-index:0;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 26%,#000 25%,transparent 72%);
+  mask-image:radial-gradient(ellipse 72% 62% at 50% 26%,#000 25%,transparent 72%);
+  pointer-events:none;z-index:0;
+}
+.hero>*{position:relative;z-index:1;}
+.hero-logo{
+  width:200px;height:200px;object-fit:cover;margin:0 auto 36px;display:block;
+  border-radius:50%;border:4px solid var(--accent2);
+  box-shadow:0 16px 50px rgba(59,130,246,.4);
+}
+.hero h1{
+  font-size:clamp(38px,7vw,76px);font-weight:900;line-height:1.04;
+  letter-spacing:-2.4px;margin-bottom:24px;color:var(--text);
+}
+.hero h1 .accent{
+  background:linear-gradient(92deg,#3b82f6 0%,#38bdf8 50%,#818cf8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .desc{
+  font-size:17px;color:var(--text-dim);max-width:560px;
+  margin:0 auto 40px;line-height:1.7;
+}
+.main-btn{
+  background:var(--accent);color:#fff;
+  padding:15px 34px;border-radius:10px;
+  text-decoration:none;font-weight:700;font-size:15px;
+  transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 8px 28px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.18);
+  border:none;cursor:pointer;font-family:inherit;
+}
+.main-btn:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(59,130,246,.5);}
+.main-btn.ghost{background:var(--surface);border:1px solid var(--border-strong);color:var(--text);box-shadow:none;}
+.main-btn.ghost:hover{border-color:var(--accent);background:rgba(59,130,246,.08);}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* HERO STATS */
+.hero-stats{
+  display:flex;justify-content:center;gap:0;
+  border-top:1px solid var(--border);padding-top:44px;margin-top:80px;flex-wrap:wrap;
+}
+.hero-stat{flex:1;min-width:150px;padding:0 24px;}
+.hero-stat-num{font-size:34px;font-weight:800;color:var(--text);letter-spacing:-0.5px;}
+.hero-stat-label{font-size:12px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-top:6px;}
+
+/* TRUST STRIP */
+.trust{padding:36px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);}
+.trust-label{text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:22px;font-weight:700;}
+.trust-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;max-width:920px;margin:0 auto;}
+.trust-item{display:flex;align-items:center;gap:9px;padding:10px 18px;border:1px solid var(--border);border-radius:30px;font-size:13px;color:var(--text-dim);background:var(--surface);}
+.trust-item i{color:var(--accent2);font-size:13px;}
+
+/* SECTION */
+.section{padding:120px 24px;max-width:1140px;margin:0 auto;text-align:center;}
+.section-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;font-weight:700;}
+.section h2{font-size:clamp(28px,4vw,46px);font-weight:800;margin-bottom:16px;letter-spacing:-1px;}
+.section-sub{font-size:16px;color:var(--text-dim);max-width:560px;margin:0 auto 64px;line-height:1.7;}
+
+/* SERVICE CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:40px 30px;text-align:left;transition:.25s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#818cf8);opacity:0;transition:.25s;}
+.card:hover{border-color:var(--border-strong);transform:translateY(-4px);background:var(--surface2);}
+.card:hover::before{opacity:1;}
+.card-icon{
+  font-size:20px;color:var(--accent2);margin-bottom:20px;
+  width:44px;height:44px;background:rgba(59,130,246,0.12);
+  border:1px solid rgba(59,130,246,0.2);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+}
+.card h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text);}
+.card p{font-size:14px;line-height:1.7;color:var(--text-dim);}
+
+/* PROCESS STEPS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:22px;overflow:hidden;}
+.step{background:var(--surface);padding:40px 28px;text-align:left;transition:.25s;}
+.step:hover{background:var(--surface2);}
+.step-num{font-size:40px;font-weight:800;background:linear-gradient(180deg,var(--accent2),rgba(96,165,250,.25));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px;letter-spacing:-1px;}
+.step h3{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--text);}
+.step p{font-size:13px;color:var(--text-dim);line-height:1.7;}
+
+/* ===== PRICING ===== */
+.pricing-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:none;}
+.pricing-inner{max-width:1140px;margin:0 auto;}
+
+.bill-wrap{display:flex;justify-content:center;margin-bottom:56px;}
+.bill-toggle{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:40px;padding:6px;}
+.bill-opt{border:none;background:transparent;font-family:inherit;cursor:pointer;padding:11px 28px;border-radius:30px;font-size:14px;font-weight:700;color:var(--text-dim);transition:.2s;display:inline-flex;align-items:center;gap:9px;}
+.bill-opt .save-pill{background:rgba(34,197,94,.15);color:#16a34a;font-size:11px;font-weight:800;padding:3px 9px;border-radius:12px;}
+html:not(.light) .bill-opt .save-pill{color:var(--green);}
+.bill-opt.active{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(59,130,246,.35);}
+.bill-opt.active .save-pill{background:rgba(255,255,255,.22);color:#fff;}
+
+.plan-list{display:flex;flex-direction:column;gap:18px;text-align:left;max-width:960px;margin:0 auto;}
+.plan-row{
+  display:grid;grid-template-columns:215px 1fr 205px;gap:30px;align-items:center;
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:30px 34px;transition:.25s;position:relative;overflow:hidden;
+}
+.plan-row:hover{border-color:var(--border-strong);transform:translateX(6px);}
+.plan-row.featured{border-color:var(--accent);box-shadow:0 0 50px rgba(59,130,246,.14);}
+.plan-row.featured::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),#818cf8);}
+html.light .plan-row.featured{background:linear-gradient(90deg,#eef4ff,#ffffff 45%);}
+.plan-name{font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.plan-badge{font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:800;padding:4px 10px;border-radius:14px;background:linear-gradient(90deg,var(--accent),#6366f1);color:#fff;}
+.plan-desc{font-size:13px;color:var(--text-dim);margin-top:6px;line-height:1.5;}
+.plan-feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;}
+.plan-feats li{font-size:13px;color:var(--text-dim);display:flex;gap:9px;align-items:flex-start;line-height:1.45;}
+.plan-feats li i{color:var(--green);font-size:11px;margin-top:3px;flex-shrink:0;}
+.plan-buy{display:flex;flex-direction:column;align-items:flex-end;gap:5px;border-left:1px solid var(--border);padding-left:30px;text-align:right;}
+.plan-old{font-size:13px;color:var(--text-dim);text-decoration:line-through;}
+.plan-price{font-size:26px;font-weight:800;letter-spacing:-.5px;white-space:nowrap;}
+.plan-price small{font-size:13px;font-weight:600;color:var(--text-dim);}
+.plan-billed{font-size:12px;color:var(--text-dim);margin-bottom:10px;}
+.plan-buy .main-btn{padding:11px 24px;font-size:13px;}
+
+/* comparison table */
+.compare{max-width:960px;margin:44px auto 0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface);}
+.compare summary{list-style:none;cursor:pointer;padding:20px 26px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center;}
+.compare summary::-webkit-details-marker{display:none}
+.compare summary i{color:var(--accent2);transition:.25s;}
+.compare[open] summary i{transform:rotate(180deg);}
+.compare-scroll{overflow-x:auto;}
+.compare table{width:100%;border-collapse:collapse;min-width:520px;}
+.compare th,.compare td{padding:14px 20px;text-align:center;font-size:13px;border-top:1px solid var(--border);color:var(--text-dim);}
+.compare th{color:var(--text);font-weight:700;}
+.compare td:first-child,.compare th:first-child{text-align:left;color:var(--text);font-weight:500;}
+.compare .yes{color:var(--green);}
+.compare .no{opacity:.25;}
+
+/* price calculator */
+.pcalc{max-width:960px;margin:44px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;text-align:left;}
+.pcalc-head{padding:26px 32px;border-bottom:1px solid var(--border);}
+.pcalc-head h3{font-size:20px;font-weight:800;margin-bottom:4px;}
+.pcalc-head p{font-size:13px;color:var(--text-dim);}
+.pcalc-body{display:grid;grid-template-columns:1.45fr 1fr;}
+.pcalc-form{padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;border-right:1px solid var(--border);}
+.pcalc-field{display:flex;flex-direction:column;gap:8px;}
+.pcalc-field.full{grid-column:1 / -1;}
+.pcalc-field label{font-size:12px;font-weight:600;color:var(--text-dim);display:flex;align-items:center;gap:7px;}
+.pcalc-field label i{color:var(--accent2);font-size:12px;width:15px;text-align:center;}
+.pcalc-field input[type=number],.pcalc-field select{
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:11px 13px;color:var(--text);font-size:14px;font-family:inherit;font-weight:600;outline:none;transition:.2s;width:100%;
+}
+.pcalc-field input:focus,.pcalc-field select:focus{border-color:var(--accent);}
+.pcalc-field select{cursor:pointer;}
+.pcalc-toggles{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;}
+.pctog{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--text-dim);background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 15px;cursor:pointer;user-select:none;transition:.2s;}
+.pctog input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer;}
+.pctog:hover{border-color:var(--border-strong);color:var(--text);}
+.pcalc-result{padding:30px 32px;display:flex;flex-direction:column;justify-content:center;background:var(--bg2);}
+.pcr-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:8px;}
+.pcr-price{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.05;}
+.pcr-price small{font-size:15px;color:var(--text-dim);font-weight:600;}
+.pcr-year{font-size:13px;color:var(--text-dim);margin-top:8px;}
+.pcr-year b{color:var(--text);}
+.pcr-plan{margin:20px 0;padding:13px 16px;background:var(--surface);border:1px solid var(--accent);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.pcr-plan span{font-size:12px;color:var(--text-dim);}
+.pcr-plan b{font-size:16px;color:var(--accent2);}
+
+.pricing-note{text-align:center;font-size:13px;color:var(--text-dim);margin:44px auto 0;display:flex;align-items:flex-start;gap:8px;justify-content:center;max-width:760px;line-height:1.6;}
+.pricing-note i{color:var(--accent2);margin-top:2px;flex-shrink:0;}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:22px;overflow:hidden;max-width:880px;margin:0 auto;}
+.why-item{display:flex;gap:18px;background:var(--surface);padding:36px;text-align:left;transition:.25s;}
+.why-item:hover{background:var(--surface2);}
+.why-icon{
+  font-size:18px;color:var(--accent2);flex-shrink:0;width:42px;height:42px;
+  background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.2);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;margin-top:2px;
+}
+.why-item h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.why-item p{font-size:13px;color:var(--text-dim);line-height:1.6;}
+
+/* TESTIMONIALS */
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.t-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:34px 30px;text-align:left;transition:.25s;display:flex;flex-direction:column;}
+.t-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+.t-stars{color:#fbbf24;font-size:12px;letter-spacing:3px;margin-bottom:18px;}
+.t-card>p{font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:26px;flex:1;}
+.t-author{display:flex;align-items:center;gap:13px;}
+.t-ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#818cf8);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0;}
+.t-name{font-size:13px;font-weight:700;}
+.t-role{font-size:12px;color:var(--text-dim);margin-top:1px;}
+
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto;text-align:left;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-item summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;cursor:pointer;font-size:15px;font-weight:600;color:var(--text);list-style:none;}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-icon{color:var(--accent2);transition:.25s;flex-shrink:0;}
+.faq-item[open] .faq-icon{transform:rotate(180deg);}
+.faq-item p{padding:0 4px 24px;font-size:14px;color:var(--text-dim);line-height:1.7;}
+
+/* CTA */
+.cta-wrap{padding:0 24px 110px;}
+.cta{
+  position:relative;max-width:1000px;margin:0 auto;padding:80px 40px;text-align:center;
+  background:linear-gradient(180deg,#0d1524,#090e18);
+  border:1px solid var(--border-strong);border-radius:26px;overflow:hidden;
+}
+html.light .cta{background:linear-gradient(180deg,#eef4ff,#ffffff);}
+.cta::before{
+  content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:600px;height:320px;background:radial-gradient(circle,rgba(59,130,246,.22),transparent 70%);
+  filter:blur(30px);pointer-events:none;
+}
+.cta>*{position:relative;}
+.cta h2{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:16px;letter-spacing:-1px;}
+.cta p{font-size:16px;color:var(--text-dim);max-width:480px;margin:0 auto 36px;line-height:1.7;}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* FLOATING CONTACT */
+.floats{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:999;}
+.float-btn{
+  width:54px;height:54px;border-radius:50%;text-decoration:none;color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:.3s;
+}
+.float-btn.tg{background:#229ED9;box-shadow:0 10px 30px rgba(34,158,217,0.5);}
+.float-btn.phone{background:var(--green);box-shadow:0 10px 30px rgba(34,197,94,0.5);}
+.float-btn:hover{transform:scale(1.1) translateY(-2px);}
+.float-btn svg{width:26px;height:26px;fill:#fff;}
+.float-btn i{font-size:22px;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24px 32px;}
+.footer-grid{
+  max-width:1140px;margin:0 auto 36px;display:grid;grid-template-columns:2fr 1fr 1.2fr;
+  gap:48px;text-align:left;padding-bottom:44px;border-bottom:1px solid var(--border);
+}
+.f-brand .logo{margin-bottom:18px;}
+.f-brand p{font-size:13px;color:var(--text-dim);line-height:1.7;max-width:320px;}
+.f-col h5{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);margin-bottom:18px;font-weight:700;}
+.f-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:13px;padding:6px 0;transition:.2s;}
+.f-col a:hover{color:var(--text);}
+.f-col a i{width:20px;color:var(--accent2);}
+.footer-bottom{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--text-dim);}
+
+@media(max-width:900px){
+  .grid,.why-grid,.steps,.t-grid{grid-template-columns:1fr;}
+  .plan-row{grid-template-columns:1fr;gap:20px;padding:26px 22px;}
+  .plan-row:hover{transform:none;}
+  .plan-feats{grid-template-columns:1fr;}
+  .plan-buy{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:18px;align-items:flex-start;text-align:left;width:100%;}
+  .pcalc-body{grid-template-columns:1fr;}
+  .pcalc-form{grid-template-columns:1fr;border-right:none;border-bottom:1px solid var(--border);}
+  header{padding:12px 16px}
+  nav{
+    display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    gap:18px;background:var(--bg2);padding:24px 20px;border-bottom:1px solid var(--border);
+  }
+  nav.open{display:flex;}
+  .menu-toggle{display:flex;}
+  .nav-cta{display:none;}
+  .hero{padding:80px 20px 70px}
+  .section{padding:80px 20px}
+  .hero-stat{padding:0 12px;min-width:110px}
+  .footer-grid{grid-template-columns:1fr;gap:36px;}
+  .footer-bottom{justify-content:center;text-align:center;}
+  .cta{padding:56px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="logo-full.png" alt="FINEL Logo">
+    <span class="logo-word">FINEL</span>
+  </div>
+  <nav id="nav">
+    <a href="#services" data-uz="Xizmatlar"      data-ru="Услуги"    data-en="Services">Xizmatlar</a>
+    <a href="#process"  data-uz="Jarayon"         data-ru="Процесс"   data-en="Process">Jarayon</a>
+    <a href="#pricing"  data-uz="Tariflar"        data-ru="Тарифы"    data-en="Pricing">Tariflar</a>
+    <a href="#reviews"  data-uz="Fikrlar"         data-ru="Отзывы"    data-en="Reviews">Fikrlar</a>
+    <a href="#faq"      data-uz="Savollar"        data-ru="Вопросы"   data-en="FAQ">Savollar</a>
+  </nav>
+  <div class="controls">
+    <button class="btn lang-btn active" data-lang="uz" onclick="setLang('uz')">UZ</button>
+    <button class="btn lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    <button class="btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Theme"><i class="fa-solid fa-sun"></i></button>
+    <a href="tel:+998335153535" class="nav-cta"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-logo" src="logo-full.png" alt="FINEL">
+  <h1 data-uz="Moliyangiz <span class='accent'>tartibda.</span><br>Biznesingiz o'sishda."
+      data-ru="Финансы <span class='accent'>в порядке.</span><br>Бизнес растёт."
+      data-en="Finances <span class='accent'>in order.</span><br>Business growing.">
+    Moliyangiz <span class="accent">tartibda.</span><br>Biznesingiz o'sishda.
+  </h1>
+  <p class="desc"
+     data-uz="Buxgalteriya, 1C, Excel va soliq bo'yicha to'liq xizmat. Siz biznesga e'tibor bering — qolganini biz hal qilamiz."
+     data-ru="Полный сервис по бухгалтерии, 1C, Excel и налогам. Вы занимайтесь бизнесом — остальное решим мы."
+     data-en="Full-service accounting, 1C, Excel and tax support. Focus on your business — we handle the rest.">
+    Buxgalteriya, 1C, Excel va soliq bo'yicha to'liq xizmat. Siz biznesga e'tibor bering — qolganini biz hal qilamiz.
+  </p>
+  <div class="hero-actions">
+    <a href="https://t.me/Nazarbek_Khamraev" target="_blank" class="main-btn">
+      <svg style="width:16px;height:16px;fill:#fff;flex-shrink:0" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      <span data-uz="Bepul konsultatsiya" data-ru="Бесплатная консультация" data-en="Free consultation">Bepul konsultatsiya</span>
+    </a>
+    <a href="tel:+998335153535" class="main-btn ghost"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
+  </div>
+
+  <div class="hero-stats" id="stats">
+    <div class="hero-stat"><div class="hero-stat-num" data-count="10" data-suffix="+">0</div><div class="hero-stat-label" data-uz="Firmalar va maslahat oluvchilar" data-ru="Компаний и клиентов" data-en="Companies & clients">Firmalar va mijozlar</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" data-count="3" data-suffix="+">0</div><div class="hero-stat-label" data-uz="Yil tajriba" data-ru="Года опыта" data-en="Years of experience">Yil tajriba</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" data-count="99" data-suffix="%">0</div><div class="hero-stat-label" data-uz="Muvaffaqiyat" data-ru="Успех" data-en="Success rate">Muvaffaqiyat</div></div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust reveal">
+  <div class="trust-label" data-uz="Biz bilan ishlaydigan sohalar" data-ru="Отрасли, с которыми мы работаем" data-en="Industries we work with">Biz bilan ishlaydigan sohalar</div>
+  <div class="trust-row">
+    <div class="trust-item"><i class="fa-solid fa-laptop-code"></i><span data-uz="IT va texnologiya" data-ru="IT и технологии" data-en="IT & Technology">IT va texnologiya</span></div>
+    <div class="trust-item"><i class="fa-solid fa-cart-shopping"></i><span data-uz="Savdo" data-ru="Торговля" data-en="Retail & Trade">Savdo</span></div>
+    <div class="trust-item"><i class="fa-solid fa-truck-fast"></i><span data-uz="Logistika" data-ru="Логистика" data-en="Logistics">Logistika</span></div>
+    <div class="trust-item"><i class="fa-solid fa-industry"></i><span data-uz="Ishlab chiqarish" data-ru="Производство" data-en="Manufacturing">Ishlab chiqarish</span></div>
+    <div class="trust-item"><i class="fa-solid fa-utensils"></i><span data-uz="Xizmat ko'rsatish" data-ru="Сфера услуг" data-en="Services">Xizmat ko'rsatish</span></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-label reveal" data-uz="Nima qilamiz" data-ru="Что мы делаем" data-en="What we do">Nima qilamiz</div>
+  <h2 class="reveal" data-uz="Xizmatlarimiz" data-ru="Наши услуги" data-en="Our services">Xizmatlarimiz</h2>
+  <p class="section-sub reveal"
+     data-uz="Biznesingizning moliyaviy salomatligini ta'minlash uchun to'liq va ishonchli xizmatlar majmuasi."
+     data-ru="Полный и надёжный комплекс услуг для обеспечения финансового здоровья вашего бизнеса."
+     data-en="A complete and reliable set of services to keep your business financially healthy.">
+    Biznesingizning moliyaviy salomatligini ta'minlash uchun to'liq va ishonchli xizmatlar majmuasi.
+  </p>
+  <div class="grid reveal">
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h3 data-uz="Buxgalteriya" data-ru="Бухгалтерия" data-en="Accounting">Buxgalteriya</h3>
+      <p data-uz="To'liq buxgalteriya hisobi yuritish, oylik va yillik moliyaviy hisobotlar tayyorlash, xarajatlarni nazorat qilish."
+         data-ru="Полное ведение бухгалтерии, подготовка ежемесячных и годовых отчётов, контроль расходов."
+         data-en="Full bookkeeping, monthly and annual financial reports, expense control.">
+        To'liq buxgalteriya hisobi yuritish, oylik va yillik moliyaviy hisobotlar tayyorlash, xarajatlarni nazorat qilish.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-percent"></i></div>
+      <h3 data-uz="Soliq maslahat" data-ru="Налоговый консалтинг" data-en="Tax consulting">Soliq maslahat</h3>
+      <p data-uz="Soliq yukini qonuniy kamaytirish, soliq hisobotlarini topshirish va soliq inspeksiyasi bilan munosabatlarni tartibga solish."
+         data-ru="Законная оптимизация налоговой нагрузки, сдача налоговых отчётов и урегулирование отношений с налоговой."
+         data-en="Legal tax optimization, filing tax reports and handling relations with the tax authorities.">
+        Soliq yukini qonuniy kamaytirish, soliq hisobotlarini topshirish va soliq inspeksiyasi bilan munosabatlarni tartibga solish.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-desktop"></i></div>
+      <h3 data-uz="1C xizmati" data-ru="Услуги 1C" data-en="1C service">1C xizmati</h3>
+      <p data-uz="1C dasturini sozlash, yuritish va yangilash. Ma'lumotlarni to'g'ri kiritish va tizimni nazorat qilish."
+         data-ru="Настройка, ведение и обновление программы 1C. Корректный ввод данных и контроль системы."
+         data-en="Setup, maintenance and updates of 1C. Accurate data entry and system control.">
+        1C dasturini sozlash, yuritish va yangilash. Ma'lumotlarni to'g'ri kiritish va tizimni nazorat qilish.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-file-invoice"></i></div>
+      <h3 data-uz="Ro'yxatdan o'tkazish" data-ru="Регистрация бизнеса" data-en="Business registration">Ro'yxatdan o'tkazish</h3>
+      <p data-uz="Yakka tartibdagi tadbirkorlar va yuridik shaxslarni rasmiy ro'yxatdan o'tkazish, kerakli hujjatlarni rasmiylashtirish."
+         data-ru="Официальная регистрация ИП и юрлиц, оформление необходимых документов."
+         data-en="Official registration of sole proprietors and legal entities, preparing all required documents.">
+        Yakka tartibdagi tadbirkorlar va yuridik shaxslarni rasmiy ro'yxatdan o'tkazish, kerakli hujjatlarni rasmiylashtirish.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <h3 data-uz="Moliyaviy tahlil" data-ru="Финансовый анализ" data-en="Financial analysis">Moliyaviy tahlil</h3>
+      <p data-uz="Kompaniyangizning moliyaviy holatini chuqur tahlil qilish va rivojlanish strategiyasini ishlab chiqish."
+         data-ru="Глубокий анализ финансового состояния компании и разработка стратегии развития."
+         data-en="In-depth analysis of your company's finances and a strategy for growth.">
+        Kompaniyangizning moliyaviy holatini chuqur tahlil qilish va rivojlanish strategiyasini ishlab chiqish.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-handshake"></i></div>
+      <h3 data-uz="Yuridik maslahat" data-ru="Юридическая консультация" data-en="Legal advice">Yuridik maslahat</h3>
+      <p data-uz="Biznes yuritish, shartnomalar tuzish va nizolarni hal qilish bo'yicha professional yuridik maslahat."
+         data-ru="Профессиональные юридические консультации по ведению бизнеса, заключению договоров и разрешению споров."
+         data-en="Professional legal advice on running a business, drafting contracts and resolving disputes.">
+        Biznes yuritish, shartnomalar tuzish va nizolarni hal qilish bo'yicha professional yuridik maslahat.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-label reveal" data-uz="Jarayon" data-ru="Процесс" data-en="Process">Jarayon</div>
+  <h2 class="reveal" data-uz="Qanday ishlaymiz" data-ru="Как мы работаем" data-en="How we work">Qanday ishlaymiz</h2>
+  <p class="section-sub reveal"
+     data-uz="To'rt oddiy bosqichda hamkorlikni boshlaymiz va doimiy qo'llab-quvvatlaymiz."
+     data-ru="Начинаем сотрудничество в четыре простых шага и обеспечиваем постоянную поддержку."
+     data-en="We start cooperation in four simple steps and provide ongoing support.">
+    To'rt oddiy bosqichda hamkorlikni boshlaymiz va doimiy qo'llab-quvvatlaymiz.
+  </p>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3 data-uz="Bog'lanish" data-ru="Обращение" data-en="Contact">Bog'lanish</h3>
+      <p data-uz="Telefon yoki Telegram orqali murojaat qiling — mutaxassisimiz tez javob beradi."
+         data-ru="Свяжитесь по телефону или в Telegram — наш специалист быстро ответит."
+         data-en="Reach us by phone or Telegram — our specialist replies quickly.">
+        Telefon yoki Telegram orqali murojaat qiling — mutaxassisimiz tez javob beradi.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3 data-uz="Tahlil" data-ru="Анализ" data-en="Analysis">Tahlil</h3>
+      <p data-uz="Joriy moliyaviy holatingizni tekshiramiz va biznesingizga mos tarifni tavsiya qilamiz."
+         data-ru="Анализируем текущее финансовое состояние и подбираем подходящий тариф."
+         data-en="We review your current finances and recommend the right plan.">
+        Joriy moliyaviy holatingizni tekshiramiz va biznesingizga mos tarifni tavsiya qilamiz.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3 data-uz="Shartnoma" data-ru="Договор" data-en="Agreement">Shartnoma</h3>
+      <p data-uz="Xizmat shartlarini kelishib, rasmiy shartnoma asosida ishni boshlaymiz."
+         data-ru="Согласовываем условия и начинаем работу на основании официального договора."
+         data-en="We agree on the terms and start working under an official contract.">
+        Xizmat shartlarini kelishib, rasmiy shartnoma asosida ishni boshlaymiz.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3 data-uz="Doimiy hamkorlik" data-ru="Сотрудничество" data-en="Partnership">Doimiy hamkorlik</h3>
+      <p data-uz="Har oy hisobot, maslahat va soliq monitoringi orqali yoningizda bo'lamiz."
+         data-ru="Каждый месяц предоставляем отчёты, консультации и налоговый мониторинг."
+         data-en="Monthly reports, advice and tax monitoring — we stay by your side.">
+        Har oy hisobot, maslahat va soliq monitoringi orqali yoningizda bo'lamiz.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label reveal" data-uz="Narxlar" data-ru="Стоимость" data-en="Pricing">Narxlar</div>
+    <h2 class="reveal" data-uz="Tariflar" data-ru="Тарифы" data-en="Plans">Tariflar</h2>
+    <p class="section-sub reveal"
+       data-uz="Biznesingizga mos rejani tanlang. Uzoq muddatga to'lasangiz — ko'proq tejaysiz."
+       data-ru="Выберите план для вашего бизнеса. Чем дольше период оплаты — тем больше выгода."
+       data-en="Choose the plan that fits your business. Pay for longer — save more.">
+      Biznesingizga mos rejani tanlang. Uzoq muddatga to'lasangiz — ko'proq tejaysiz.
+    </p>
+
+    <!-- billing toggle -->
+    <div class="bill-wrap reveal">
+      <div class="bill-toggle">
+        <button class="bill-opt" data-bill="monthly"><span data-uz="Oylik to'lov" data-ru="Помесячно" data-en="Monthly">Oylik to'lov</span></button>
+        <button class="bill-opt active" data-bill="yearly"><span data-uz="Yillik to'lov" data-ru="За год" data-en="Yearly">Yillik to'lov</span><span class="save-pill">-20%</span></button>
+      </div>
+    </div>
+
+    <!-- plans -->
+    <div class="plan-list reveal">
+      <!-- START -->
+      <div class="plan-row" data-base="1500000">
+        <div class="plan-id">
+          <div class="plan-name">Start</div>
+          <div class="plan-desc" data-uz="Kichik biznes va yangi tadbirkorlar uchun." data-ru="Для малого бизнеса и начинающих." data-en="For small businesses and new entrepreneurs.">Kichik biznes va yangi tadbirkorlar uchun.</div>
+        </div>
+        <ul class="plan-feats">
+          <li><i class="fa-solid fa-check"></i><span data-uz="Oylik buxgalteriya hisobi" data-ru="Ежемесячная бухгалтерия" data-en="Monthly bookkeeping">Oylik buxgalteriya hisobi</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Soliq hisobot" data-ru="Налоговый отчёт" data-en="Tax report">Soliq hisobot</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Email va Telegram maslahat" data-ru="Консультация по Email и Telegram" data-en="Email & Telegram support">Email va Telegram maslahat</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Oylik hisobot" data-ru="Ежемесячный отчёт" data-en="Monthly report">Oylik hisobot</span></li>
+        </ul>
+        <div class="plan-buy">
+          <div class="plan-old"><span class="po-num">1 500 000</span> <span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></div>
+          <div class="plan-price"><span class="pr-num">1 200 000</span> <small><span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></small></div>
+          <div class="plan-billed"><span data-uz="Yiliga" data-ru="За год" data-en="Per year">Yiliga</span> <span class="pb-total">14 400 000</span> <span data-uz="so'm" data-ru="сум" data-en="UZS">so'm</span></div>
+          <a href="tel:+998335153535" class="main-btn ghost" data-uz="Tanlash" data-ru="Выбрать" data-en="Choose">Tanlash</a>
+        </div>
+      </div>
+      <!-- BIZNES -->
+      <div class="plan-row featured" data-base="3000000">
+        <div class="plan-id">
+          <div class="plan-name">Biznes <span class="plan-badge" data-uz="Ommabop" data-ru="Популярный" data-en="Popular">Ommabop</span></div>
+          <div class="plan-desc" data-uz="O'sib borayotgan kompaniyalar uchun." data-ru="Для растущих компаний." data-en="For growing companies.">O'sib borayotgan kompaniyalar uchun.</div>
+        </div>
+        <ul class="plan-feats">
+          <li><i class="fa-solid fa-check"></i><span data-uz="Start tarifidagi barcha imkoniyatlar" data-ru="Всё из тарифа Start" data-en="Everything in Start">Start tarifidagi barcha imkoniyatlar</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Haftalik hisobot" data-ru="Еженедельный отчёт" data-en="Weekly report">Haftalik hisobot</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Soliq optimizatsiyasi" data-ru="Налоговая оптимизация" data-en="Tax optimization">Soliq optimizatsiyasi</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Telefon maslahat" data-ru="Телефонная консультация" data-en="Phone consultation">Telefon maslahat</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Ish haqi hisobi" data-ru="Расчёт зарплаты" data-en="Payroll accounting">Ish haqi hisobi</span></li>
+        </ul>
+        <div class="plan-buy">
+          <div class="plan-old"><span class="po-num">3 000 000</span> <span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></div>
+          <div class="plan-price"><span class="pr-num">2 400 000</span> <small><span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></small></div>
+          <div class="plan-billed"><span data-uz="Yiliga" data-ru="За год" data-en="Per year">Yiliga</span> <span class="pb-total">28 800 000</span> <span data-uz="so'm" data-ru="сум" data-en="UZS">so'm</span></div>
+          <a href="tel:+998335153535" class="main-btn" data-uz="Tanlash" data-ru="Выбрать" data-en="Choose">Tanlash</a>
+        </div>
+      </div>
+      <!-- PREMIUM -->
+      <div class="plan-row" data-base="5000000">
+        <div class="plan-id">
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc" data-uz="Yirik biznes uchun to'liq moliyaviy boshqaruv." data-ru="Полное финансовое управление для крупного бизнеса." data-en="Complete financial management for large businesses.">Yirik biznes uchun to'liq moliyaviy boshqaruv.</div>
+        </div>
+        <ul class="plan-feats">
+          <li><i class="fa-solid fa-check"></i><span data-uz="Biznes tarifidagi barcha imkoniyatlar" data-ru="Всё из тарифа Бизнес" data-en="Everything in Biznes">Biznes tarifidagi barcha imkoniyatlar</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Kunlik monitoring" data-ru="Ежедневный мониторинг" data-en="Daily monitoring">Kunlik monitoring</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Cheksiz maslahat" data-ru="Безлимитные консультации" data-en="Unlimited consultations">Cheksiz maslahat</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Moliyaviy tahlil va prognoz" data-ru="Анализ и прогноз" data-en="Financial analysis & forecast">Moliyaviy tahlil va prognoz</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-uz="Shaxsiy menejer" data-ru="Персональный менеджер" data-en="Personal manager">Shaxsiy menejer</span></li>
+        </ul>
+        <div class="plan-buy">
+          <div class="plan-old"><span class="po-num">5 000 000</span> <span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></div>
+          <div class="plan-price"><span class="pr-num">4 000 000</span> <small><span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></small></div>
+          <div class="plan-billed"><span data-uz="Yiliga" data-ru="За год" data-en="Per year">Yiliga</span> <span class="pb-total">48 000 000</span> <span data-uz="so'm" data-ru="сум" data-en="UZS">so'm</span></div>
+          <a href="tel:+998335153535" class="main-btn ghost" data-uz="Tanlash" data-ru="Выбрать" data-en="Choose">Tanlash</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- price calculator -->
+    <div class="pcalc reveal">
+      <div class="pcalc-head">
+        <h3 data-uz="Narx kalkulyatori" data-ru="Калькулятор стоимости" data-en="Price calculator">Narx kalkulyatori</h3>
+        <p data-uz="Biznesingiz parametrlarini kiriting — taxminiy oylik narx darhol hisoblanadi."
+           data-ru="Введите параметры вашего бизнеса — примерная стоимость в месяц рассчитается сразу."
+           data-en="Enter your business parameters — the estimated monthly price is calculated instantly.">
+          Biznesingiz parametrlarini kiriting — taxminiy oylik narx darhol hisoblanadi.
+        </p>
+      </div>
+      <div class="pcalc-body">
+        <div class="pcalc-form">
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-users"></i> <span data-uz="Xodimlar soni" data-ru="Кол-во сотрудников" data-en="Employees">Xodimlar soni</span></label>
+            <input type="number" id="qWorkers" min="0" max="500" value="5">
+          </div>
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-file-lines"></i> <span data-uz="Oylik hujjatlar soni" data-ru="Документов в месяц" data-en="Documents / month">Oylik hujjatlar soni</span></label>
+            <input type="number" id="qDocs" min="0" max="5000" value="100">
+          </div>
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-building-columns"></i> <span data-uz="Bank vipiska soni" data-ru="Банковских выписок" data-en="Bank statements">Bank vipiska soni</span></label>
+            <input type="number" id="qBank" min="0" max="1000" value="20">
+          </div>
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-scale-balanced"></i> <span data-uz="Soliq rejimi" data-ru="Налоговый режим" data-en="Tax regime">Soliq rejimi</span></label>
+            <select id="qRegime">
+              <option value="ytt" data-uz="Yakka tartibdagi tadbirkor" data-ru="ИП" data-en="Sole proprietor">Yakka tartibdagi tadbirkor</option>
+              <option value="turnover" selected data-uz="Aylanmadan soliq" data-ru="Налог с оборота" data-en="Turnover tax">Aylanmadan soliq</option>
+              <option value="vat" data-uz="QQS to'lovchi" data-ru="Плательщик НДС" data-en="VAT payer">QQS to'lovchi</option>
+            </select>
+          </div>
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-briefcase"></i> <span data-uz="Faoliyat turi" data-ru="Вид деятельности" data-en="Activity type">Faoliyat turi</span></label>
+            <select id="qActivity">
+              <option value="1.0" data-uz="Xizmat ko'rsatish" data-ru="Услуги" data-en="Services">Xizmat ko'rsatish</option>
+              <option value="1.2" data-uz="Savdo" data-ru="Торговля" data-en="Trade">Savdo</option>
+              <option value="1.4" data-uz="Ishlab chiqarish" data-ru="Производство" data-en="Manufacturing">Ishlab chiqarish</option>
+            </select>
+          </div>
+          <div class="pcalc-field">
+            <label><i class="fa-solid fa-boxes-stacked"></i> <span data-uz="Oylik operatsiyalar" data-ru="Операций в месяц" data-en="Transactions / month">Oylik operatsiyalar</span></label>
+            <input type="number" id="qOps" min="0" max="10000" value="150">
+          </div>
+          <div class="pcalc-toggles">
+            <label class="pctog"><input type="checkbox" id="qImport"> <span data-uz="Import / eksport" data-ru="Импорт / экспорт" data-en="Import / export">Import / eksport</span></label>
+            <label class="pctog"><input type="checkbox" id="qCurrency"> <span data-uz="Valyuta operatsiyalari" data-ru="Валютные операции" data-en="Currency operations">Valyuta operatsiyalari</span></label>
+            <label class="pctog"><input type="checkbox" id="qBranches"> <span data-uz="Filiallar mavjud" data-ru="Есть филиалы" data-en="Has branches">Filiallar mavjud</span></label>
+          </div>
+        </div>
+        <div class="pcalc-result">
+          <div class="pcr-label" data-uz="Taxminiy oylik narx" data-ru="Примерно в месяц" data-en="Estimated monthly">Taxminiy oylik narx</div>
+          <div class="pcr-price"><span id="qMonthly">0</span> <small data-uz="so'm" data-ru="сум" data-en="UZS">so'm</small></div>
+          <div class="pcr-year"><span data-uz="Yillik to'lovda" data-ru="При оплате за год" data-en="Paid yearly">Yillik to'lovda</span> (-20%): <b><span id="qYearMo">0</span> <span data-uz="so'm/oy" data-ru="сум/мес" data-en="UZS/mo">so'm/oy</span></b></div>
+          <div class="pcr-plan"><span data-uz="Tavsiya etilgan tarif" data-ru="Рекомендуемый тариф" data-en="Recommended plan">Tavsiya etilgan tarif</span> <b id="qPlan">Biznes</b></div>
+          <a href="tel:+998335153535" class="main-btn" data-uz="Aniq taklif olish" data-ru="Получить точное предложение" data-en="Get exact quote">Aniq taklif olish</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- comparison table -->
+    <details class="compare reveal">
+      <summary><span data-uz="Batafsil taqqoslash jadvali" data-ru="Подробная таблица тарифов" data-en="Detailed plan comparison">Batafsil taqqoslash jadvali</span> <i class="fa-solid fa-chevron-down"></i></summary>
+      <div class="compare-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th data-uz="Imkoniyat" data-ru="Возможность" data-en="Feature">Imkoniyat</th>
+            <th>Start</th><th>Biznes</th><th>Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-uz="Oylik narx" data-ru="Цена в месяц" data-en="Monthly price">Oylik narx</td><td>1 500 000</td><td>3 000 000</td><td>5 000 000</td></tr>
+          <tr><td data-uz="Buxgalteriya hisobi" data-ru="Ведение бухгалтерии" data-en="Bookkeeping">Buxgalteriya hisobi</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td data-uz="Soliq hisobot" data-ru="Налоговый отчёт" data-en="Tax report">Soliq hisobot</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td data-uz="Hisobot chastotasi" data-ru="Частота отчётов" data-en="Report frequency">Hisobot chastotasi</td><td data-uz="Oylik" data-ru="Месяц" data-en="Monthly">Oylik</td><td data-uz="Haftalik" data-ru="Неделя" data-en="Weekly">Haftalik</td><td data-uz="Kunlik" data-ru="День" data-en="Daily">Kunlik</td></tr>
+          <tr><td data-uz="Telefon maslahat" data-ru="Телефонная консультация" data-en="Phone consultation">Telefon maslahat</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td data-uz="Ish haqi hisobi" data-ru="Расчёт зарплаты" data-en="Payroll accounting">Ish haqi hisobi</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td data-uz="Moliyaviy tahlil va prognoz" data-ru="Анализ и прогноз" data-en="Financial analysis & forecast">Moliyaviy tahlil va prognoz</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          <tr><td data-uz="Shaxsiy menejer" data-ru="Персональный менеджер" data-en="Personal manager">Shaxsiy menejer</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </details>
+
+    <p class="pricing-note reveal">
+      <i class="fa-solid fa-circle-info"></i>
+      <span data-uz="Ko'rsatilgan narxlar uzluksiz to'lovda amal qiladi. Chegirma tanlangan to'lov davriga qarab avtomatik qo'llaniladi. Aniq narx biznes hajmiga qarab belgilanadi."
+            data-ru="Указанные цены действуют при непрерывной оплате. Скидка применяется автоматически в зависимости от периода. Точная цена зависит от объёма бизнеса."
+            data-en="Prices apply with continuous payment. The discount is applied automatically based on the billing period. The exact price depends on your business volume.">
+        Ko'rsatilgan narxlar uzluksiz to'lovda amal qiladi. Chegirma tanlangan to'lov davriga qarab avtomatik qo'llaniladi. Aniq narx biznes hajmiga qarab belgilanadi.
+      </span>
+    </p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="section-label reveal" data-uz="Bizni tanlang" data-ru="Выберите нас" data-en="Why choose us">Bizni tanlang</div>
+  <h2 class="reveal" data-uz="Nima uchun FINEL?" data-ru="Почему FINEL?" data-en="Why FINEL?">Nima uchun FINEL?</h2>
+  <p class="section-sub reveal"
+     data-uz="Bizning jamoamiz O'zbekistondagi firmalarga moliyaviy muvaffaqiyat yo'lida ko'maklashadi."
+     data-ru="Наша команда помогает компаниям Узбекистана на пути к финансовому успеху."
+     data-en="Our team helps companies in Uzbekistan on their way to financial success.">
+    Bizning jamoamiz O'zbekistondagi firmalarga moliyaviy muvaffaqiyat yo'lida ko'maklashadi.
+  </p>
+  <div class="why-grid reveal">
+    <div class="why-item">
+      <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div>
+        <h4 data-uz="Ishonchlilik" data-ru="Надёжность" data-en="Reliability">Ishonchlilik</h4>
+        <p data-uz="Barcha ma'lumotlar maxfiy saqlanadi. Biz mijozlarimiz ishonchini birinchi o'ringa qo'yamiz."
+           data-ru="Все данные хранятся конфиденциально. Мы ставим доверие клиентов на первое место."
+           data-en="All data is kept confidential. Our clients' trust always comes first.">
+          Barcha ma'lumotlar maxfiy saqlanadi. Biz mijozlarimiz ishonchini birinchi o'ringa qo'yamiz.
+        </p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div>
+        <h4 data-uz="Tezlik" data-ru="Скорость" data-en="Speed">Tezlik</h4>
+        <p data-uz="Murojaatingizga tez javob beramiz. Muddatlarni hech qachon kechiktirmaymiz."
+           data-ru="Быстро отвечаем на ваши обращения. Никогда не нарушаем сроки."
+           data-en="We respond quickly and never miss deadlines.">
+          Murojaatingizga tez javob beramiz. Muddatlarni hech qachon kechiktirmaymiz.
+        </p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+      <div>
+        <h4 data-uz="Tajriba" data-ru="Опыт" data-en="Experience">Tajriba</h4>
+        <p data-uz="Jamoamiz a'zolari buxgalteriya, 1C va soliq sohasida amaliy tajribaga ega mutaxassislar."
+           data-ru="Члены нашей команды — специалисты с практическим опытом в бухгалтерии, 1C и налогах."
+           data-en="Our team members have hands-on experience in accounting, 1C and taxes.">
+          Jamoamiz a'zolari buxgalteriya, 1C va soliq sohasida amaliy tajribaga ega mutaxassislar.
+        </p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+      <div>
+        <h4 data-uz="Doimiy yangilanish" data-ru="Актуальность" data-en="Always up to date">Doimiy yangilanish</h4>
+        <p data-uz="O'zbekiston soliq qonunchiligidagi barcha o'zgarishlarni kuzatib boramiz va sizni o'z vaqtida xabardor qilamiz."
+           data-ru="Следим за всеми изменениями в налоговом законодательстве Узбекистана и своевременно вас информируем."
+           data-en="We track every change in Uzbekistan's tax legislation and inform you in time.">
+          O'zbekiston soliq qonunchiligidagi barcha o'zgarishlarni kuzatib boramiz va sizni o'z vaqtida xabardor qilamiz.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="reviews">
+  <div class="section-label reveal" data-uz="Mijozlar fikri" data-ru="Отзывы клиентов" data-en="Testimonials">Mijozlar fikri</div>
+  <h2 class="reveal" data-uz="Bizga ishonganlar nima deydi" data-ru="Что говорят наши клиенты" data-en="What our clients say">Bizga ishonganlar nima deydi</h2>
+  <p class="section-sub reveal"
+     data-uz="Bizga moliyasini ishonib topshirgan firmalar fikri."
+     data-ru="Отзывы компаний, доверивших нам свои финансы."
+     data-en="Feedback from companies that trusted us with their finances.">
+    Bizga moliyasini ishonib topshirgan firmalar fikri.
+  </p>
+  <div class="t-grid reveal">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p data-uz="«FINEL bilan ishlashni boshlaganimizdan beri soliq bo'yicha birorta ham jarima olmadik. Hisobotlar doim o'z vaqtida, hamma narsa tartibda.»"
+         data-ru="«С тех пор как начали работать с FINEL, не получили ни одного штрафа по налогам. Отчёты всегда вовремя, всё в порядке.»"
+         data-en="“Since we started working with FINEL we haven't received a single tax fine. Reports are always on time, everything is in order.”">
+        «FINEL bilan ishlashni boshlaganimizdan beri soliq bo'yicha birorta ham jarima olmadik. Hisobotlar doim o'z vaqtida, hamma narsa tartibda.»
+      </p>
+      <div class="t-author">
+        <div class="t-ava">AK</div>
+        <div>
+          <div class="t-name">Aziz Karimov</div>
+          <div class="t-role" data-uz="Savdo kompaniyasi direktori" data-ru="Директор торговой компании" data-en="Director of a trading company">Savdo kompaniyasi direktori</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p data-uz="«1C tizimimizni to'liq tartibga solishdi va moliyaviy tahlil orqali xarajatlarimizni sezilarli kamaytirdik. Juda professional jamoa.»"
+         data-ru="«Полностью навели порядок в нашей 1C и благодаря финансовому анализу заметно сократили расходы. Очень профессиональная команда.»"
+         data-en="“They fully organized our 1C, and financial analysis helped us noticeably cut costs. A very professional team.”">
+        «1C tizimimizni to'liq tartibga solishdi va moliyaviy tahlil orqali xarajatlarimizni sezilarli kamaytirdik. Juda professional jamoa.»
+      </p>
+      <div class="t-author">
+        <div class="t-ava">MR</div>
+        <div>
+          <div class="t-name">Malika Rahimova</div>
+          <div class="t-role" data-uz="Logistika kompaniyasi moliya direktori" data-ru="Финансовый директор логистической компании" data-en="CFO of a logistics company">Logistika kompaniyasi moliya direktori</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p data-uz="«Startap sifatida buxgalteriyani noldan yo'lga qo'yishda juda katta yordam berishdi. Har savolimga tez va tushunarli javob olaman.»"
+         data-ru="«Как стартапу, нам очень помогли выстроить бухгалтерию с нуля. На каждый вопрос получаю быстрый и понятный ответ.»"
+         data-en="“As a startup, they helped us build accounting from scratch. I get quick and clear answers to every question.”">
+        «Startap sifatida buxgalteriyani noldan yo'lga qo'yishda juda katta yordam berishdi. Har savolimga tez va tushunarli javob olaman.»
+      </p>
+      <div class="t-author">
+        <div class="t-ava">JT</div>
+        <div>
+          <div class="t-name">Jasur To'raev</div>
+          <div class="t-role" data-uz="IT kompaniya asoschisi" data-ru="Основатель IT-компании" data-en="IT company founder">IT kompaniya asoschisi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-label reveal" data-uz="Savollar" data-ru="Вопросы" data-en="FAQ">Savollar</div>
+  <h2 class="reveal" data-uz="Ko'p so'raladigan savollar" data-ru="Часто задаваемые вопросы" data-en="Frequently asked questions">Ko'p so'raladigan savollar</h2>
+  <p class="section-sub reveal"
+     data-uz="Xizmatlarimiz haqida ko'proq bilib oling. Boshqa savol bo'lsa, telefon yoki Telegram orqali yozing."
+     data-ru="Узнайте больше о наших услугах. Если есть другие вопросы — напишите по телефону или в Telegram."
+     data-en="Learn more about our services. Any other questions — call us or write on Telegram.">
+    Xizmatlarimiz haqida ko'proq bilib oling. Boshqa savol bo'lsa, telefon yoki Telegram orqali yozing.
+  </p>
+  <div class="faq-list reveal">
+    <details class="faq-item" open>
+      <summary>
+        <span data-uz="Xizmatdan foydalanishni qanday boshlayman?" data-ru="Как начать пользоваться услугой?" data-en="How do I get started?">Xizmatdan foydalanishni qanday boshlayman?</span>
+        <i class="fa-solid fa-chevron-down faq-icon"></i>
+      </summary>
+      <p data-uz="Telefon yoki Telegram orqali bog'laning, biz vaziyatingizni o'rganib, mos tarifni tavsiya qilamiz va shartnoma tuzamiz."
+         data-ru="Свяжитесь по телефону или в Telegram, мы изучим вашу ситуацию, подберём тариф и заключим договор."
+         data-en="Contact us by phone or Telegram — we'll review your situation, recommend a plan and sign a contract.">
+        Telefon yoki Telegram orqali bog'laning, biz vaziyatingizni o'rganib, mos tarifni tavsiya qilamiz va shartnoma tuzamiz.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>
+        <span data-uz="Ma'lumotlarim maxfiyligi qanday ta'minlanadi?" data-ru="Как обеспечивается конфиденциальность моих данных?" data-en="How is my data kept confidential?">Ma'lumotlarim maxfiyligi qanday ta'minlanadi?</span>
+        <i class="fa-solid fa-chevron-down faq-icon"></i>
+      </summary>
+      <p data-uz="Barcha hujjatlar va moliyaviy ma'lumotlar maxfiylik shartnomasi asosida himoyalanadi va uchinchi shaxslarga berilmaydi."
+         data-ru="Все документы и финансовые данные защищены соглашением о конфиденциальности и не передаются третьим лицам."
+         data-en="All documents and financial data are protected by an NDA and never shared with third parties.">
+        Barcha hujjatlar va moliyaviy ma'lumotlar maxfiylik shartnomasi asosida himoyalanadi va uchinchi shaxslarga berilmaydi.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>
+        <span data-uz="Tarifni keyinroq o'zgartirish mumkinmi?" data-ru="Можно ли изменить тариф позже?" data-en="Can I change my plan later?">Tarifni keyinroq o'zgartirish mumkinmi?</span>
+        <i class="fa-solid fa-chevron-down faq-icon"></i>
+      </summary>
+      <p data-uz="Ha, biznesingiz o'sishi bilan istalgan vaqtda tarifni yuqoriga yoki pastga o'zgartirishingiz mumkin."
+         data-ru="Да, вы можете в любой момент изменить тариф в большую или меньшую сторону по мере роста бизнеса."
+         data-en="Yes, you can upgrade or downgrade at any time as your business grows.">
+        Ha, biznesingiz o'sishi bilan istalgan vaqtda tarifni yuqoriga yoki pastga o'zgartirishingiz mumkin.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>
+        <span data-uz="To'lov qanday amalga oshiriladi?" data-ru="Как происходит оплата?" data-en="How does payment work?">To'lov qanday amalga oshiriladi?</span>
+        <i class="fa-solid fa-chevron-down faq-icon"></i>
+      </summary>
+      <p data-uz="To'lov har oy boshida amalga oshiriladi, naqd va bank o'tkazmasi orqali qabul qilinadi."
+         data-ru="Оплата производится в начале каждого месяца, принимаем наличными и банковским переводом."
+         data-en="Payment is made at the beginning of each month, in cash or by bank transfer.">
+        To'lov har oy boshida amalga oshiriladi, naqd va bank o'tkazmasi orqali qabul qilinadi.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>
+        <span data-uz="Shartnomani bekor qilish mumkinmi?" data-ru="Можно ли отменить договор?" data-en="Can I cancel the contract?">Shartnomani bekor qilish mumkinmi?</span>
+        <i class="fa-solid fa-chevron-down faq-icon"></i>
+      </summary>
+      <p data-uz="Ha, xizmatni istalgan oy oxirida hech qanday jarima to'lovsiz bekor qilishingiz mumkin."
+         data-ru="Да, вы можете отменить услугу в конце любого месяца без каких-либо штрафов."
+         data-en="Yes, you can cancel at the end of any month without any penalty.">
+        Ha, xizmatni istalgan oy oxirida hech qanday jarima to'lovsiz bekor qilishingiz mumkin.
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap reveal" id="contact">
+  <div class="cta">
+    <h2 data-uz="Bepul konsultatsiya oling" data-ru="Получите бесплатную консультацию" data-en="Get a free consultation">Bepul konsultatsiya oling</h2>
+    <p data-uz="Biznesingiz uchun qaysi xizmat eng mos ekanini bilib oling. Mutaxassislarimiz siz bilan bepul maslahatlashadi."
+       data-ru="Узнайте, какая услуга подходит именно для вашего бизнеса. Наши специалисты проконсультируют вас бесплатно."
+       data-en="Find out which service fits your business best. Our specialists will advise you for free.">
+      Biznesingiz uchun qaysi xizmat eng mos ekanini bilib oling. Mutaxassislarimiz siz bilan bepul maslahatlashadi.
+    </p>
+    <div class="cta-actions">
+      <a href="tel:+998335153535" class="main-btn"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
+      <a href="https://t.me/Nazarbek_Khamraev" target="_blank" class="main-btn ghost">
+        <svg style="width:16px;height:16px;fill:currentColor;flex-shrink:0" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="logo">
+        <img src="logo-full.png" alt="FINEL" style="height:50px;width:50px;object-fit:cover;border-radius:50%;border:2px solid var(--accent2);">
+        <span class="logo-word">FINEL</span>
+      </div>
+      <p data-uz="Buxgalteriya, 1C, Excel va soliq bo'yicha professional xizmatlar. Biznesingiz moliyasini ishonchli qo'llarga topshiring."
+         data-ru="Профессиональные услуги по бухгалтерии, 1C, Excel и налогам. Доверьте финансы вашего бизнеса надёжным рукам."
+         data-en="Professional accounting, 1C, Excel and tax services. Put your business finances in reliable hands.">
+        Buxgalteriya, 1C, Excel va soliq bo'yicha professional xizmatlar. Biznesingiz moliyasini ishonchli qo'llarga topshiring.
+      </p>
+    </div>
+    <div class="f-col">
+      <h5 data-uz="Sahifalar" data-ru="Страницы" data-en="Pages">Sahifalar</h5>
+      <a href="#services" data-uz="Xizmatlar"     data-ru="Услуги"   data-en="Services">Xizmatlar</a>
+      <a href="#process"  data-uz="Jarayon"        data-ru="Процесс"  data-en="Process">Jarayon</a>
+      <a href="#pricing"  data-uz="Tariflar"       data-ru="Тарифы"   data-en="Pricing">Tariflar</a>
+      <a href="#reviews"  data-uz="Fikrlar"        data-ru="Отзывы"   data-en="Reviews">Fikrlar</a>
+      <a href="#faq"      data-uz="Savollar"       data-ru="Вопросы"  data-en="FAQ">Savollar</a>
+    </div>
+    <div class="f-col">
+      <h5 data-uz="Aloqa" data-ru="Контакты" data-en="Contact">Aloqa</h5>
+      <a href="tel:+998335153535"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
+      <a href="https://t.me/Nazarbek_Khamraev" target="_blank"><i class="fa-brands fa-telegram"></i> @Nazarbek_Khamraev</a>
+      <a href="#"><i class="fa-solid fa-location-dot"></i> <span data-uz="O'zbekiston, Toshkent" data-ru="Узбекистан, Ташкент" data-en="Tashkent, Uzbekistan">O'zbekiston, Toshkent</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 FINEL. <span data-uz="Barcha huquqlar himoyalangan." data-ru="Все права защищены." data-en="All rights reserved.">Barcha huquqlar himoyalangan.</span></p>
+    <p data-uz="Buxgalteriya · 1C · Excel · Soliq" data-ru="Бухгалтерия · 1C · Excel · Налоги" data-en="Accounting · 1C · Excel · Taxes">Buxgalteriya · 1C · Excel · Soliq</p>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACT -->
+<div class="floats">
+  <a href="tel:+998335153535" class="float-btn phone" title="+998 33 515 35 35"><i class="fa-solid fa-phone"></i></a>
+  <a href="https://t.me/Nazarbek_Khamraev" class="float-btn tg" target="_blank" title="Telegram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+const fmt = n => Math.round(n).toLocaleString('ru-RU');
+
+/* ===== Language (uz / ru / en) ===== */
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-uz]').forEach(el => {
+    const val = el.getAttribute('data-' + lang) || el.getAttribute('data-uz');
+    if (val.includes('<')) { el.innerHTML = val; } else { el.textContent = val; }
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.documentElement.lang = lang;
+}
+
+/* ===== Theme (dark / light) ===== */
+function applyTheme(theme) {
+  document.documentElement.classList.toggle('light', theme === 'light');
+  const icon = document.querySelector('#themeBtn i');
+  icon.className = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  localStorage.setItem('theme', theme);
+}
+function toggleTheme() {
+  applyTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light');
+}
+
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+menuToggle.addEventListener('click', () => nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+/* Scroll reveal */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Animated counters */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const dur = 1400, start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * ease) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.querySelectorAll('[data-count]').forEach(animateCounter); statsObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.4 });
+const statsEl = document.getElementById('stats');
+if (statsEl) statsObserver.observe(statsEl);
+
+/* ===== Billing toggle (monthly / yearly) ===== */
+const YEAR_DISC = 0.20;
+function setBilling(mode) {
+  document.querySelectorAll('.bill-opt').forEach(b => b.classList.toggle('active', b.dataset.bill === mode));
+  document.querySelectorAll('.plan-row[data-base]').forEach(row => {
+    const base = +row.dataset.base;
+    const pm = mode === 'yearly' ? Math.round(base * (1 - YEAR_DISC)) : base;
+    row.querySelector('.pr-num').textContent = fmt(pm);
+    const old = row.querySelector('.plan-old');
+    const billed = row.querySelector('.plan-billed');
+    if (mode === 'yearly') {
+      old.style.display = 'block';
+      old.querySelector('.po-num').textContent = fmt(base);
+      billed.style.display = 'block';
+      billed.querySelector('.pb-total').textContent = fmt(pm * 12);
+    } else {
+      old.style.display = 'none';
+      billed.style.display = 'none';
+    }
+  });
+  localStorage.setItem('billing', mode);
+}
+document.querySelectorAll('.bill-opt').forEach(b => b.addEventListener('click', () => setBilling(b.dataset.bill)));
+
+/* ===== Price calculator ===== */
+const regimeBase = { ytt: 700000, turnover: 1500000, vat: 3000000 };
+const qIds = ['qWorkers','qDocs','qBank','qRegime','qActivity','qOps','qImport','qCurrency','qBranches'];
+function calcQuote() {
+  const num = id => Math.max(0, +document.getElementById(id).value || 0);
+  const w = num('qWorkers'), d = num('qDocs'), b = num('qBank'), ops = num('qOps');
+  const regime = document.getElementById('qRegime').value;
+  const act = parseFloat(document.getElementById('qActivity').value);
+  const imp = document.getElementById('qImport').checked;
+  const cur = document.getElementById('qCurrency').checked;
+  const br = document.getElementById('qBranches').checked;
+  let m = (regimeBase[regime] + w*150000 + d*4000 + b*10000 + ops*2000) * act;
+  if (imp) m += 1500000;
+  if (cur) m += 800000;
+  if (br) m *= 1.25;
+  m = Math.max(500000, Math.round(m/50000)*50000);
+  const yearMo = Math.round(m*0.8/50000)*50000;
+  document.getElementById('qMonthly').textContent = fmt(m);
+  document.getElementById('qYearMo').textContent = fmt(yearMo);
+  document.getElementById('qPlan').textContent = m < 2500000 ? 'Start' : m < 4500000 ? 'Biznes' : 'Premium';
+}
+qIds.forEach(id => document.getElementById(id).addEventListener('input', calcQuote));
+
+/* init */
+applyTheme(localStorage.getItem('theme') || 'dark');
+setLang(localStorage.getItem('lang') || 'uz');
+setBilling(localStorage.getItem('billing') || 'yearly');
+calcQuote();
+</script>
+
+</body>
+</html>
