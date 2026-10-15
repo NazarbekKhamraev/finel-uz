@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" class="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -379,6 +379,68 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
   .footer-bottom{justify-content:center;text-align:center;}
   .cta{padding:56px 24px;}
 }
+/* FINEL premium visual system */
+:root{--bg:#0c1529;--bg2:#111e36;--surface:#14233d;--surface2:#1b2c49;--text:#f5f7ff;--text-dim:#b7c2d9;--accent:#4169e1;--accent2:#9ab1ff;--border:#263754;--border-strong:#405576;--header-bg:rgba(12,21,41,.96)}
+html.light{--bg:#fff;--bg2:#f5f7fc;--surface:#fff;--surface2:#f3f6fd;--text:#14213b;--text-dim:#58657d;--accent:#4169e1;--accent2:#3153bc;--border:#e1e6ef;--border-strong:#bdc9df;--header-bg:rgba(255,255,255,.97)}
+body{line-height:1.65;-webkit-font-smoothing:antialiased}
+header{padding:18px max(28px,calc((100vw - 1200px)/2));gap:24px;backdrop-filter:blur(12px)}
+.logo img{width:38px;height:38px;border:0;border-radius:8px;box-shadow:none}
+.logo-word{font-size:22px;letter-spacing:3px;font-weight:800}
+nav{gap:24px}nav a{font-size:13px}
+.controls{gap:5px}.btn{border:0;font-size:11px;padding:8px}.btn.active{background:var(--bg2);color:var(--accent2)}
+.theme-btn{border:0}.nav-cta{margin-left:10px;box-shadow:none;border-radius:5px;padding:11px 15px;font-size:12px}
+.nav-cta:hover{background:#3153bc;transform:none}
+.hero{max-width:1200px;padding:86px 0 0;display:grid;grid-template-columns:1.2fr .85fr;column-gap:76px;text-align:left;align-items:center}
+.hero::before,.hero::after{display:none}.hero-logo{display:none}
+.hero-copy{padding:16px 0}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--accent2);margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--accent)}
+.hero h1{font-size:clamp(38px,4.7vw,65px);line-height:1.14;font-weight:700;letter-spacing:-2.6px;margin-bottom:26px}
+.hero h1 .accent{background:none;color:var(--accent2)}
+.hero .desc{font-size:15px;line-height:1.9;max-width:490px;margin:0 0 34px}
+.hero-actions{justify-content:flex-start;gap:12px}
+.main-btn{padding:15px 23px;font-size:13px;border-radius:5px;box-shadow:none;font-weight:600;min-height:48px}
+.main-btn:hover{box-shadow:none;background:#3153bc;transform:translateY(-1px)}
+.main-btn.ghost{background:transparent;border-color:var(--border-strong)}
+.hero-art{align-self:stretch;min-height:400px;background:#4169e1;color:white;position:relative;border-radius:3px;overflow:hidden;padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.art-top{display:flex;justify-content:space-between;font-size:10px;font-weight:600;letter-spacing:2px;opacity:.85}
+.art-mark{width:90%;height:240px;margin:8px auto;overflow:visible}
+.art-bottom{border-top:1px solid rgba(255,255,255,.3);padding-top:20px;display:flex;justify-content:space-between;align-items:end;gap:16px}
+.art-bottom p{font-size:25px;font-weight:500;line-height:1.35;letter-spacing:-.6px}.art-bottom span{font-size:28px;font-weight:300;opacity:.7}
+.hero-stats{grid-column:1/-1;justify-content:flex-start;margin-top:66px;padding:30px 0;gap:0;border-bottom:1px solid var(--border)}
+.hero-stat{min-width:0;padding:0 44px;border-right:1px solid var(--border);flex:0 1 33.33%}.hero-stat:first-child{padding-left:0}.hero-stat:last-child{border:0}
+.hero-stat-num{font-size:30px;font-weight:600;letter-spacing:-1px}.hero-stat-label{font-size:10px;letter-spacing:1.1px;margin-top:4px}
+.trust{background:var(--bg);border-top:0;border-bottom:1px solid var(--border);padding:30px 24px 34px}.trust-label{font-size:10px;letter-spacing:1.8px;margin-bottom:20px}
+.trust-row{max-width:1100px;justify-content:space-between;gap:18px}.trust-item{border:0;border-radius:0;padding:0;background:none;font-size:12px;gap:10px}
+.section{max-width:1200px;padding:100px 0;text-align:left}.section-label{font-size:10px;letter-spacing:2.5px;margin-bottom:12px}.section h2{font-size:clamp(28px,3.3vw,40px);font-weight:600;letter-spacing:-1.3px;line-height:1.2;margin-bottom:18px}
+.section-sub{margin:0 0 44px;max-width:570px;font-size:14px;line-height:1.9}
+.grid{gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border)}
+.card{border-radius:0;border-top:0;border-left:0;padding:32px;min-height:240px}.card::before{display:none}.card:hover{transform:none;background:var(--bg2)}
+.card-icon{border:0;background:none;width:auto;height:auto;justify-content:flex-start;font-size:22px;margin-bottom:26px;color:var(--accent2)}
+.card h3{font-size:17px;font-weight:600}.card p{font-size:13px;line-height:1.8}
+#process{border-top:1px solid var(--border)}
+.steps{background:none;gap:28px;border:0;border-radius:0}.step{padding:24px 0 0;border-top:1px solid var(--border);background:none}.step:hover{background:none}.step-num{font-size:30px;font-weight:400;background:none;color:var(--accent2);margin-bottom:26px}.step h3{font-weight:600}
+.pricing-section{max-width:none;padding:92px 28px;background:var(--bg2)}.pricing-inner{max-width:1200px}
+.bill-wrap{justify-content:flex-start;margin-bottom:30px}.bill-toggle{border-radius:5px;padding:4px}.bill-opt{border-radius:3px;padding:10px 20px;font-size:12px}.bill-opt.active{box-shadow:none}.bill-opt .save-pill{font-size:10px;border-radius:3px}
+.plan-list{max-width:none;gap:12px}.plan-row{border-radius:6px;padding:28px 30px;grid-template-columns:210px 1fr 210px}.plan-row:hover{transform:none}.plan-row.featured{box-shadow:none;border-color:var(--accent)}.plan-row.featured::before{background:var(--accent);width:3px}html.light .plan-row.featured{background:#fff}
+.plan-name{font-size:21px;font-weight:600}.plan-badge{border-radius:3px;background:var(--accent);font-size:8px}.plan-price{font-size:26px;font-weight:600}.plan-feats{gap:10px 18px}.plan-feats li{font-size:12px}.plan-feats li i{color:var(--accent2)}
+.compare{max-width:none;border-radius:6px;margin-top:24px}.compare summary{font-size:13px;padding:18px 24px}.compare .yes{color:var(--accent2)}
+.pcalc{max-width:none;border-radius:6px;margin-top:24px}.pcalc-head{padding:24px 30px}.pcalc-head h3{font-size:19px;font-weight:600}.pcalc-form{padding:28px 30px}.pcalc-field input[type=number],.pcalc-field select,.pctog,.pcr-plan{border-radius:4px}.pcr-price{font-weight:600;font-size:36px}.pcr-plan{border-color:var(--border-strong)}.pricing-note{max-width:none;justify-content:flex-start;font-size:12px;margin-top:24px}
+.why-grid{max-width:none;gap:0;border-radius:0;background:none}.why-item{padding:32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.why-icon{border:0;background:none;border-radius:0;color:var(--accent2)}
+#reviews{padding-top:0}.t-grid{gap:20px}.t-card{border-radius:5px;padding:30px;box-shadow:none}.t-card:hover{transform:none}.t-stars{color:var(--accent2);font-size:10px;letter-spacing:3px}.t-ava{background:var(--bg2);color:var(--accent2);border-radius:4px}
+#faq{border-top:1px solid var(--border)}.faq-list{max-width:none}.faq-item summary{padding:23px 0;font-size:14px;font-weight:500}.faq-item p{max-width:800px;font-size:13px;padding-left:0}
+.cta-wrap{padding:0 28px 90px}.cta{max-width:1200px;border:0;border-radius:4px;background:#4169e1;padding:60px 50px;color:#fff;text-align:left;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:40px}
+html.light .cta{background:#4169e1}.cta::before{display:none}.cta h2{font-size:34px;font-weight:600;letter-spacing:-1px;margin:0 0 15px}.cta p{color:#edf1ff;font-size:14px;margin:0;max-width:560px}.cta-actions{grid-column:2;grid-row:1/3;flex-direction:column;align-items:stretch;gap:10px}.cta .main-btn{background:#fff;color:#2447ad}.cta .main-btn.ghost{background:transparent;color:#fff;border-color:#b5c6ff}
+footer{padding:55px max(28px,calc((100vw - 1200px)/2)) 24px;background:var(--bg);border-top:1px solid var(--border)}.footer-grid{max-width:none;grid-template-columns:1.5fr 1fr 1fr;gap:80px}.f-brand p{font-size:12px;max-width:300px}.f-col h5{font-size:11px;letter-spacing:1.5px}.f-col a{font-size:12px}.footer-bottom{max-width:none;font-size:11px;margin-top:40px}.footer-bottom p{font-size:11px}
+.floats{right:20px;bottom:20px;gap:8px}.float-btn{width:42px;height:42px;border-radius:50%;box-shadow:none}.float-btn.phone{display:none}.float-btn.tg{background:#4169e1}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:4px}section[id],#contact{scroll-margin-top:100px}
+.reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(14px)}.js .reveal.in-view{opacity:1;transform:none}
+@media(min-width:901px) and (max-width:1255px){.hero,.section:not(.pricing-section){margin-left:28px;margin-right:28px}.hero{column-gap:40px}header{padding:16px 28px}nav{gap:16px}.nav-cta{display:none}}
+@media(max-width:1000px){.hero{column-gap:32px}.hero h1{font-size:44px}.hero-art{min-height:370px;padding:24px}.art-bottom p{font-size:22px}.plan-row{grid-template-columns:170px 1fr 180px;gap:20px;padding:24px}.plan-buy{padding-left:20px}.plan-feats{grid-template-columns:1fr}.footer-grid{gap:35px}}
+@media(max-width:900px){header{padding:14px 20px;gap:10px}.logo-word{font-size:19px}.logo img{width:32px;height:32px}nav{gap:18px}.hero{padding:44px 20px 0;grid-template-columns:1fr;gap:30px}.hero-copy{padding:0}.hero h1{font-size:clamp(35px,7vw,54px);letter-spacing:-1.6px}.hero-eyebrow{margin-bottom:22px;font-size:10px}.hero .desc{font-size:14px;margin-bottom:26px}.hero-art{min-height:280px;padding:24px}.art-mark{height:170px;width:65%;margin:-8px auto}.art-bottom p{font-size:22px}.hero-stats{grid-column:1;margin-top:6px;padding:24px 0;gap:0}.hero-stat{padding:0 15px;flex:1}.hero-stat-num{font-size:26px}.hero-stat-label{font-size:8px;letter-spacing:.5px}.trust{padding:28px 20px}.trust-row{justify-content:center;gap:18px 24px}.trust-item{font-size:11px}.section{padding:62px 20px}.section-sub{margin-bottom:30px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:26px;min-height:220px}.steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.plan-row{grid-template-columns:1fr;gap:18px;padding:24px}.plan-feats{grid-template-columns:1fr 1fr}.plan-buy{border-left:0;padding:18px 0 0;align-items:flex-start;text-align:left}.pcalc-body{grid-template-columns:1fr}.pcalc-form{grid-template-columns:1fr 1fr;border-right:0}.pcalc-head,.pcalc-form,.pcalc-result{padding:24px}.why-grid{grid-template-columns:1fr}.why-item{padding:26px}.t-grid{grid-template-columns:1fr}.cta-wrap{padding:0 20px 60px}.cta{display:block;padding:36px 26px}.cta h2{font-size:28px}.cta p{margin-bottom:26px}.cta-actions{align-items:flex-start}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.f-brand{grid-column:1/-1}.footer-bottom{gap:12px;justify-content:flex-start;text-align:left}.floats{right:14px;bottom:14px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.card{min-height:0}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .main-btn{width:100%}.hero-art{min-height:260px}.hero-stat{padding:0 10px}.hero-stat-label{font-size:8px;letter-spacing:0}.hero-stat-num{font-size:24px}.steps{gap:22px}.step p{font-size:12px}.plan-feats,.pcalc-form{grid-template-columns:1fr}.bill-opt{padding:10px 14px}.footer-grid{gap:28px 15px}.f-col a{overflow-wrap:anywhere}.logo{gap:8px}.controls{gap:2px}.btn{padding:7px}.theme-btn{width:30px}.menu-toggle{width:32px}.section h2{font-size:29px}.hero h1{font-size:36px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
@@ -402,13 +464,14 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
     <button class="btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Theme"><i class="fa-solid fa-sun"></i></button>
     <a href="tel:+998335153535" class="nav-cta"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-controls="nav" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-logo" src="logo-full.png" alt="FINEL">
+ <div class="hero-copy">
+ <p class="hero-eyebrow" data-uz="Biznesingiz uchun moliyaviy hamkor" data-ru="Финансовый партнёр вашего бизнеса" data-en="Your business finance partner">Biznesingiz uchun moliyaviy hamkor</p>
   <h1 data-uz="Moliyangiz <span class='accent'>tartibda.</span><br>Biznesingiz o'sishda."
       data-ru="Финансы <span class='accent'>в порядке.</span><br>Бизнес растёт."
       data-en="Finances <span class='accent'>in order.</span><br>Business growing.">
@@ -421,14 +484,27 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
     Buxgalteriya, 1C, Excel va soliq bo'yicha to'liq xizmat. Siz biznesga e'tibor bering — qolganini biz hal qilamiz.
   </p>
   <div class="hero-actions">
-    <a href="https://t.me/Nazarbek_Khamraev" target="_blank" class="main-btn">
+    <a href="https://t.me/Nazarbek_Khamraev" target="_blank" rel="noopener noreferrer" class="main-btn">
       <svg style="width:16px;height:16px;fill:#fff;flex-shrink:0" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       <span data-uz="Bepul konsultatsiya" data-ru="Бесплатная консультация" data-en="Free consultation">Bepul konsultatsiya</span>
     </a>
     <a href="tel:+998335153535" class="main-btn ghost"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
   </div>
 
-  <div class="hero-stats" id="stats">
+ </div>
+ <div class="hero-art">
+  <div class="art-top"><span>FINEL / FINANCE</span><span>01 — 03</span></div>
+  <svg class="art-mark" viewBox="0 0 360 240" aria-hidden="true">
+   <circle cx="180" cy="120" r="105" fill="none" stroke="white" stroke-opacity=".18"/>
+   <circle cx="180" cy="120" r="75" fill="none" stroke="white" stroke-opacity=".18"/>
+   <path d="M100 190V60h150v28H132v32h90v28h-90v42z" fill="white"/>
+   <path d="M172 190l44-44 29 19 49-63" fill="none" stroke="#b6caff" stroke-width="5"/>
+   <path d="M276 103l20-4-1 21" fill="none" stroke="#b6caff" stroke-width="5"/>
+   <circle cx="100" cy="190" r="4" fill="white"/><circle cx="180" cy="15" r="4" fill="white"/>
+  </svg>
+  <div class="art-bottom"><p data-uz="Aniqlik.<br>Ishonch.<br>O‘sish." data-ru="Точность.<br>Доверие.<br>Рост." data-en="Clarity.<br>Confidence.<br>Growth.">Aniqlik.<br>Ishonch.<br>O‘sish.</p><span aria-hidden="true">↗</span></div>
+ </div>
+ <div class="hero-stats" id="stats">
     <div class="hero-stat"><div class="hero-stat-num" data-count="10" data-suffix="+">0</div><div class="hero-stat-label" data-uz="Firmalar va maslahat oluvchilar" data-ru="Компаний и клиентов" data-en="Companies & clients">Firmalar va mijozlar</div></div>
     <div class="hero-stat"><div class="hero-stat-num" data-count="3" data-suffix="+">0</div><div class="hero-stat-label" data-uz="Yil tajriba" data-ru="Года опыта" data-en="Years of experience">Yil tajriba</div></div>
     <div class="hero-stat"><div class="hero-stat-num" data-count="99" data-suffix="%">0</div><div class="hero-stat-label" data-uz="Muvaffaqiyat" data-ru="Успех" data-en="Success rate">Muvaffaqiyat</div></div>
@@ -941,7 +1017,7 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
     </p>
     <div class="cta-actions">
       <a href="tel:+998335153535" class="main-btn"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
-      <a href="https://t.me/Nazarbek_Khamraev" target="_blank" class="main-btn ghost">
+      <a href="https://t.me/Nazarbek_Khamraev" target="_blank" rel="noopener noreferrer" class="main-btn ghost">
         <svg style="width:16px;height:16px;fill:currentColor;flex-shrink:0" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         <span>Telegram</span>
       </a>
@@ -974,7 +1050,7 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
     <div class="f-col">
       <h5 data-uz="Aloqa" data-ru="Контакты" data-en="Contact">Aloqa</h5>
       <a href="tel:+998335153535"><i class="fa-solid fa-phone"></i> +998 33 515 35 35</a>
-      <a href="https://t.me/Nazarbek_Khamraev" target="_blank"><i class="fa-brands fa-telegram"></i> @Nazarbek_Khamraev</a>
+      <a href="https://t.me/Nazarbek_Khamraev" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> @Nazarbek_Khamraev</a>
       <a href="#"><i class="fa-solid fa-location-dot"></i> <span data-uz="O'zbekiston, Toshkent" data-ru="Узбекистан, Ташкент" data-en="Tashkent, Uzbekistan">O'zbekiston, Toshkent</span></a>
     </div>
   </div>
@@ -987,7 +1063,7 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:64px 24p
 <!-- FLOATING CONTACT -->
 <div class="floats">
   <a href="tel:+998335153535" class="float-btn phone" title="+998 33 515 35 35"><i class="fa-solid fa-phone"></i></a>
-  <a href="https://t.me/Nazarbek_Khamraev" class="float-btn tg" target="_blank" title="Telegram">
+  <a href="https://t.me/Nazarbek_Khamraev" class="float-btn tg" target="_blank" rel="noopener noreferrer" title="Telegram">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
     </svg>
@@ -1021,9 +1097,10 @@ function toggleTheme() {
 
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');
-menuToggle.addEventListener('click', () => nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+menuToggle.addEventListener('click', () => { const open = nav.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); });
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
 
+document.documentElement.classList.add('js');
 /* Scroll reveal */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1034,6 +1111,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 /* Animated counters */
 function animateCounter(el) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); return; }
   const target = parseFloat(el.dataset.count);
   const suffix = el.dataset.suffix || '';
   const dur = 1400, start = performance.now();
