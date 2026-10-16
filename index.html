@@ -511,6 +511,25 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 @media(max-width:480px){.cashflow-inputs{display:flex;gap:0}.cashflow-inputs>label{margin-bottom:7px}.cashflow-input{margin-bottom:16px}.cashflow-chart{gap:12px;padding:18px 0 0}.cashflow-result strong{font-size:36px}.cf-column>div{height:120px}.cf-column>span{font-size:9px}.cashflow-dashboard{padding:22px 18px}.cashflow-result>div>span{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.cf-column i{transition:none}}
 
+/* Responsive finance scenes and scroll entrances. */
+.finance-art{perspective:1200px}.finance-depth{width:100%;transform-style:preserve-3d;animation:finance-depth-float 9s ease-in-out infinite;transform-origin:center}.finance-board{transform-style:preserve-3d;backface-visibility:hidden}.finance-chart,.finance-widgets{transform:translateZ(12px)}.finance-board-head{transform:translateZ(18px)}
+.document-volume{display:flex;align-items:baseline;gap:6px;min-width:0}.document-volume strong{font-size:29px;line-height:1;font-weight:600;color:var(--accent2);font-variant-numeric:tabular-nums}.document-volume>span{font-size:9px;color:var(--text-dim)}
+@keyframes finance-depth-float{0%,100%{transform:perspective(1200px) rotateX(2deg) rotateY(-3deg) translateY(0)}50%{transform:perspective(1200px) rotateX(-2deg) rotateY(3deg) translateY(-7px)}}
+.edge-ready .edge-enter{opacity:0;transform:perspective(1100px) translate3d(var(--edge-x,50px),22px,-30px) rotateY(var(--edge-turn,-5deg));transition:opacity .75s ease,transform 1s cubic-bezier(.16,1,.3,1);transition-delay:var(--edge-delay,0ms);backface-visibility:hidden}
+.edge-ready .edge-left{--edge-x:-50px;--edge-turn:5deg}.edge-ready .edge-right{--edge-x:50px;--edge-turn:-5deg}.edge-ready .edge-enter.edge-visible{opacity:1;transform:perspective(1100px) translate3d(0,0,0) rotateY(0)}
+.cashflow-lab,.pcalc{isolation:isolate}.cashflow-inputs{text-align:left}.cashflow-result>div{min-width:0}.cashflow-result strong{overflow-wrap:anywhere}.cashflow-input input,.pcalc-field input,.pcalc-field select{font-variant-numeric:tabular-nums}
+@media(max-width:900px){
+ .hero,.section,.pricing-inner,.cashflow-lab,.cashflow-dashboard,.cashflow-inputs,.pcalc,.pcalc-body,.pcalc-form,.pcalc-result,.finance-art,.finance-board{min-width:0}
+ .finance-depth{animation:finance-depth-mobile 9s ease-in-out infinite}.finance-art{overflow:visible;padding:12px 10px 26px}.finance-board{padding:20px 18px}.finance-chart svg{max-height:150px}.finance-chart-title{font-size:13px}.finance-widget-label{font-size:10px}.finance-chart-key{font-size:10px;letter-spacing:0}.finance-document-foot{font-size:9px}.finance-board-foot{font-size:9px;line-height:1.6;gap:10px}.finance-brand>span{font-size:8px}.finance-status{font-size:9px}.finance-chip{font-size:11px;min-height:36px}.chip-three>span{font-size:10px}.finance-allocation span{font-size:10px;min-width:65px}.finance-allocation b{height:6px}.finance-mix{padding:14px 12px;gap:14px}.finance-widgets{gap:10px}.finance-widget{padding:12px}.document-volume strong{font-size:28px}.document-volume>span{font-size:10px}.finance-bars{height:63px;gap:6px}
+ .cashflow-inputs{display:flex;padding:24px;text-align:left;gap:0}.cashflow-inputs>label{text-align:left;align-self:auto;font-size:13px;margin-bottom:8px}.cashflow-input{min-height:52px;margin-bottom:20px}.cashflow-input input{font-size:20px;min-height:30px}.cashflow-input>span{font-size:11px}.lab-tag{font-size:10px;margin-bottom:22px}.lab-reset{min-height:44px;font-size:12px;margin:0}.cashflow-dashboard{padding:26px 22px}.cashflow-result p{font-size:10px;letter-spacing:1px}.cashflow-result strong{font-size:38px}.cashflow-chart{gap:14px;margin-top:24px}.cf-column>b{font-size:12px}.cf-column>div{height:150px}.cf-column>span{font-size:11px}.cashflow-formula{font-size:12px}.lab-note{font-size:11px;line-height:1.7}.lab-intro>p{font-size:14px}.report-cards p{font-size:13px}
+ .pcalc-form{padding:24px;gap:20px}.pcalc-field label{font-size:13px;line-height:1.5}.pcalc-field input[type=number],.pcalc-field select{font-size:16px;min-height:48px}.pctog{min-height:48px;font-size:13px}.pctog input{width:19px;height:19px}.pcalc-toggles{gap:10px}.pcalc-result{padding:26px 24px}.pcr-price{font-size:34px;overflow-wrap:anywhere}.pcr-label{font-size:11px}.pcr-year{font-size:13px}.pcalc-result .main-btn{min-height:48px}
+ .lang-btn{min-width:30px;min-height:38px}.menu-toggle,.theme-btn{min-width:38px;min-height:40px}.logo-word{font-size:17px}.controls{gap:1px}.logo{gap:7px}.logo img{width:30px;height:30px}header{padding:12px 16px}.btn{padding:7px}.hero{padding-top:36px}.hero h1{font-size:clamp(32px,8.3vw,48px);letter-spacing:-1.4px}.hero-eyebrow{font-size:9px;letter-spacing:1.2px}.hero-stat-label{font-size:9px;line-height:1.7}.hero-stat-num{font-size:25px}
+ .edge-ready .edge-enter{--edge-x:26px;--edge-turn:-3deg;transform:perspective(800px) translate3d(var(--edge-x),16px,0) rotateY(var(--edge-turn));transition-duration:.65s,.8s}.edge-ready .edge-left{--edge-x:-26px;--edge-turn:3deg}.edge-ready .edge-enter.edge-visible{transform:none}.compare-scroll{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.floats{right:12px;bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@keyframes finance-depth-mobile{0%,100%{transform:perspective(1000px) rotateX(1deg) rotateY(-1.2deg) translateY(0)}50%{transform:perspective(1000px) rotateX(-1deg) rotateY(1.2deg) translateY(-4px)}}
+@media(max-width:360px){header{padding:10px 12px}.logo-word{font-size:15px;letter-spacing:2px}.logo img{width:27px;height:27px}.lang-btn{min-width:27px}.theme-btn,.menu-toggle{min-width:33px}.hero,.section{padding-left:16px;padding-right:16px}.hero h1{font-size:31px}.finance-board{padding:17px 14px}.finance-widgets{grid-template-columns:1fr 1fr;gap:8px}.finance-widget{padding:10px}.finance-status{font-size:8px}.finance-brand>span{font-size:7px;letter-spacing:.6px}.finance-mix{gap:10px}.finance-allocation span{min-width:57px;font-size:9px}.cashflow-inputs{padding:22px 18px}.cashflow-dashboard{padding:24px 16px}.cashflow-chart{gap:10px}.cf-column>span{font-size:10px}.finance-chart-key{font-size:9px}.pcalc-head,.pcalc-form,.pcalc-result{padding-left:20px;padding-right:20px}}
+@media(prefers-reduced-motion:reduce){.finance-depth{animation:none;transform:none}.edge-ready .edge-enter{opacity:1;transform:none!important;transition:none}.finance-board{transform:none!important}.finance-chart,.finance-widgets,.finance-board-head{transform:none}}
+
 </style>
 </head>
 <body>
@@ -565,7 +584,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 
  </div>
  <div class="hero-art finance-art" aria-hidden="true">
-  <div class="finance-board">
+  <div class="finance-depth"><div class="finance-board">
    <div class="finance-board-head"><span class="finance-brand">FINEL <span>/ FINANCE</span></span><span class="finance-status"><i></i><span data-uz="Aniq hisob" data-ru="Точный учёт" data-en="Clear accounts">Aniq hisob</span></span></div>
    <div class="finance-chart-title"><span data-uz="Moliyaviy ko‘rinish" data-ru="Финансовая картина" data-en="Financial overview">Moliyaviy ko‘rinish</span><span>↗</span></div>
    <div class="finance-chart">
@@ -581,13 +600,14 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
    </div>
    <div class="finance-widgets">
     <div class="finance-widget"><span class="finance-widget-label" data-uz="Daromad / xarajat" data-ru="Доходы / расходы" data-en="Income / expenses">Daromad / xarajat</span><div class="finance-bars"><i style="--bar:42%;--i:0"></i><i style="--bar:67%;--i:1"></i><i style="--bar:55%;--i:2"></i><i style="--bar:82%;--i:3"></i><i style="--bar:69%;--i:4"></i><i style="--bar:95%;--i:5"></i></div></div>
-    <div class="finance-widget finance-document"><span class="finance-widget-label" data-uz="Hisobotlar" data-ru="Отчётность" data-en="Reports">Hisobotlar</span><div><span class="document-lines"><i></i><i></i><i></i></span><span class="document-check">✓</span></div><span class="finance-document-foot" data-uz="Hammasi tartibda" data-ru="Всё в порядке" data-en="Everything in order">Hammasi tartibda</span></div>
+    <div class="finance-widget finance-document"><span class="finance-widget-label" data-uz="Oylik hujjatlar" data-ru="Документов в месяц" data-en="Monthly documents">Oylik hujjatlar</span><div><span class="document-volume"><strong id="heroDocCount">100</strong><span data-uz="hujjat" data-ru="док." data-en="docs">hujjat</span></span><span class="document-check">✓</span></div><span class="finance-document-foot" data-uz="Kalkulyatordagi hajm" data-ru="Объём из калькулятора" data-en="From the quote calculator">Kalkulyatordagi hajm</span></div>
     <div class="finance-widget finance-mix">
      <svg class="finance-donut" viewBox="0 0 100 100"><circle class="finance-donut-track" cx="50" cy="50" r="35"/><circle class="finance-donut-blue" cx="50" cy="50" r="35"/><circle class="finance-donut-gold" cx="50" cy="50" r="35"/></svg>
      <div class="finance-mix-copy"><span class="finance-widget-label" data-uz="Tarkibiy tahlil" data-ru="Структурный анализ" data-en="Breakdown analysis">Tarkibiy tahlil</span><div class="finance-allocation"><div><span data-uz="Hisob" data-ru="Учёт" data-en="Accounts">Hisob</span><b><i></i></b></div><div><span data-uz="Soliq" data-ru="Налоги" data-en="Tax">Soliq</span><b><i></i></b></div><div><span data-uz="Rejalash" data-ru="Планирование" data-en="Planning">Rejalash</span><b><i></i></b></div></div></div>
     </div>
    </div>
    <div class="finance-board-foot"><span data-uz="Hisob. Tahlil. Xotirjamlik." data-ru="Учёт. Анализ. Спокойствие." data-en="Accounts. Insight. Peace of mind.">Hisob. Tahlil. Xotirjamlik.</span><span data-uz="Illustratsiya" data-ru="Иллюстрация" data-en="Illustration">Illustratsiya</span></div>
+  </div>
   </div>
   <span class="finance-chip chip-one">1C <span>↗</span></span>
   <span class="finance-chip chip-two"><span class="chip-excel">X</span> Excel</span>
@@ -847,19 +867,19 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
       <div class="pcalc-body">
         <div class="pcalc-form">
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-users"></i> <span data-uz="Xodimlar soni" data-ru="Кол-во сотрудников" data-en="Employees">Xodimlar soni</span></label>
+            <label for="qWorkers"><i class="fa-solid fa-users"></i> <span data-uz="Xodimlar soni" data-ru="Кол-во сотрудников" data-en="Employees">Xodimlar soni</span></label>
             <input type="number" id="qWorkers" min="0" max="500" value="5">
           </div>
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-file-lines"></i> <span data-uz="Oylik hujjatlar soni" data-ru="Документов в месяц" data-en="Documents / month">Oylik hujjatlar soni</span></label>
+            <label for="qDocs"><i class="fa-solid fa-file-lines"></i> <span data-uz="Oylik hujjatlar soni" data-ru="Документов в месяц" data-en="Documents / month">Oylik hujjatlar soni</span></label>
             <input type="number" id="qDocs" min="0" max="5000" value="100">
           </div>
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-building-columns"></i> <span data-uz="Bank vipiska soni" data-ru="Банковских выписок" data-en="Bank statements">Bank vipiska soni</span></label>
+            <label for="qBank"><i class="fa-solid fa-building-columns"></i> <span data-uz="Bank vipiska soni" data-ru="Банковских выписок" data-en="Bank statements">Bank vipiska soni</span></label>
             <input type="number" id="qBank" min="0" max="1000" value="20">
           </div>
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-scale-balanced"></i> <span data-uz="Soliq rejimi" data-ru="Налоговый режим" data-en="Tax regime">Soliq rejimi</span></label>
+            <label for="qRegime"><i class="fa-solid fa-scale-balanced"></i> <span data-uz="Soliq rejimi" data-ru="Налоговый режим" data-en="Tax regime">Soliq rejimi</span></label>
             <select id="qRegime">
               <option value="ytt" data-uz="Yakka tartibdagi tadbirkor" data-ru="ИП" data-en="Sole proprietor">Yakka tartibdagi tadbirkor</option>
               <option value="turnover" selected data-uz="Aylanmadan soliq" data-ru="Налог с оборота" data-en="Turnover tax">Aylanmadan soliq</option>
@@ -867,7 +887,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
             </select>
           </div>
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-briefcase"></i> <span data-uz="Faoliyat turi" data-ru="Вид деятельности" data-en="Activity type">Faoliyat turi</span></label>
+            <label for="qActivity"><i class="fa-solid fa-briefcase"></i> <span data-uz="Faoliyat turi" data-ru="Вид деятельности" data-en="Activity type">Faoliyat turi</span></label>
             <select id="qActivity">
               <option value="1.0" data-uz="Xizmat ko'rsatish" data-ru="Услуги" data-en="Services">Xizmat ko'rsatish</option>
               <option value="1.2" data-uz="Savdo" data-ru="Торговля" data-en="Trade">Savdo</option>
@@ -875,7 +895,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
             </select>
           </div>
           <div class="pcalc-field">
-            <label><i class="fa-solid fa-boxes-stacked"></i> <span data-uz="Oylik operatsiyalar" data-ru="Операций в месяц" data-en="Transactions / month">Oylik operatsiyalar</span></label>
+            <label for="qOps"><i class="fa-solid fa-boxes-stacked"></i> <span data-uz="Oylik operatsiyalar" data-ru="Операций в месяц" data-en="Transactions / month">Oylik operatsiyalar</span></label>
             <input type="number" id="qOps" min="0" max="10000" value="150">
           </div>
           <div class="pcalc-toggles">
@@ -1362,6 +1382,46 @@ calcQuote();
  inputs.forEach(input => { input.addEventListener('input', calculate); input.addEventListener('change', () => { input.value = Math.min(1000000, Math.max(0, Number(input.value) || 0)); calculate(); }); });
  document.getElementById('cfReset').addEventListener('click', () => { inputs.forEach((input, i) => input.value = [20,120,85][i]); calculate(); });
  calculate();
+})();
+
+</script>
+<script>
+(() => {
+ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+ const targets = [
+  ['.finance-art','right'], ['.cashflow-inputs','left'], ['.cashflow-dashboard','right'],
+  ['.pcalc','left'], ['.report-cards article:nth-child(1)','left'], ['.report-cards article:nth-child(3)','right']
+ ];
+ const nodes = [];
+ if ('IntersectionObserver' in window && !reduced.matches) {
+  const entrance = new IntersectionObserver(entries => entries.forEach(entry => {
+   if (entry.isIntersecting) { entry.target.classList.add('edge-visible'); entrance.unobserve(entry.target); }
+  }), { threshold:.06, rootMargin:'0px 0px -18px 0px' });
+  targets.forEach(([selector,side]) => document.querySelectorAll(selector).forEach(el => {
+   el.classList.remove('reveal');
+   el.classList.add('edge-enter','edge-'+side); nodes.push(el);
+   entrance.observe(el);
+   el.addEventListener('focusin', () => { el.classList.add('edge-visible'); entrance.unobserve(el); });
+  }));
+  document.documentElement.classList.add('edge-ready');
+  reduced.addEventListener('change', () => { if(reduced.matches) nodes.forEach(el=>{ el.classList.add('edge-visible'); entrance.unobserve(el); }); });
+ }
+ const docInput = document.getElementById('qDocs');
+ const docCount = document.getElementById('heroDocCount');
+ if (!docInput || !docCount) return;
+ let animation = 0, displayed = 0;
+ function updateCount(animate = true) {
+  const count = Math.max(0, Math.round(Number(docInput.value) || 0));
+  cancelAnimationFrame(animation);
+  if (!animate || reduced.matches) { displayed=count;docCount.textContent=count.toLocaleString('ru-RU');return; }
+  const start=performance.now(), from=displayed;
+  function tick(now) {const progress=Math.min(1,(now-start)/850);displayed=Math.round(from+(count-from)*(1-Math.pow(1-progress,3)));docCount.textContent=displayed.toLocaleString('ru-RU');if(progress<1)animation=requestAnimationFrame(tick);}
+  animation=requestAnimationFrame(tick);
+ }
+ docInput.addEventListener('input',()=>updateCount());
+ if ('IntersectionObserver' in window) {
+  const counter = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){updateCount();counter.disconnect();}}),{threshold:.2});counter.observe(docCount);
+ } else updateCount(false);
 })();
 
 </script>
