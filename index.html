@@ -611,6 +611,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 @media(max-width:900px){.finel-symbol{width:36px;height:36px;border-radius:8px}.hero-brand .finel-symbol{width:80px;height:80px;border-radius:16px}.hero-brand strong{font-size:30px}.hero-brand span{font-size:12px}.chip-three{padding:12px 14px;font-size:23px}.chip-three>span{font-size:12px}.finance-chip{font-size:12px}.finance-widget-label{font-size:11px}.finance-document-foot,.finance-board-foot{font-size:10px}.editorial-motion .editorial-item{transition-delay:0ms}#process .step{min-height:150px}.editorial-count{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.editorial-count{display:none}}
 
+/* Preserve the complete original FINEL artwork without cropping. */ header .logo .finel-original{width:48px;height:48px;object-fit:contain;border-radius:10px}.hero-brand .finel-original{width:100px;height:100px;object-fit:contain;border-radius:18px}.hero-brand{gap:20px}.hero-brand strong{font-size:32px;letter-spacing:3px}.hero-brand span{font-size:13px;line-height:1.7}@media(max-width:900px){header .logo .finel-original{width:36px;height:36px}.hero-brand .finel-original{width:88px;height:88px}.hero-brand strong{font-size:28px}.hero-brand span{font-size:11px}}
 </style>
 </head>
 <body>
@@ -619,7 +620,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 <!-- HEADER -->
 <header>
   <div class="logo">
-    <svg class="finel-symbol" viewBox="0 0 100 100" role="img" aria-label="FINEL"><rect width="100" height="100" rx="18" fill="#0734df"/><svg x="20" y="12" width="60" height="76" viewBox="180 65 285 330"><image href="logo-full.png" width="640" height="640"/></svg></svg>
+    <img class="finel-original" src="logo-full.png" alt="FINEL" width="100" height="100">
     <span class="logo-word">FINEL</span>
   </div>
   <nav id="nav">
@@ -642,7 +643,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 <!-- HERO -->
 <section class="hero">
  <div class="hero-copy">
- <div class="hero-brand"><svg class="finel-symbol" viewBox="0 0 100 100" role="img" aria-label="FINEL"><rect width="100" height="100" rx="18" fill="#0734df"/><svg x="20" y="12" width="60" height="76" viewBox="180 65 285 330"><image href="logo-full.png" width="640" height="640"/></svg></svg><div><strong>FINEL</strong><span data-uz="Buxgalteriya · 1C · Excel · Soliq" data-ru="Бухгалтерия · 1C · Excel · Налоги" data-en="Accounting · 1C · Excel · Tax">Buxgalteriya · 1C · Excel · Soliq</span></div></div>
+ <div class="hero-brand"><img class="finel-original" src="logo-full.png" alt="FINEL" width="100" height="100"><div><strong>FINEL</strong><span data-uz="Buxgalteriya · 1C · Excel · Soliq" data-ru="Бухгалтерия · 1C · Excel · Налоги" data-en="Accounting · 1C · Excel · Tax">Buxgalteriya · 1C · Excel · Soliq</span></div></div>
  <p class="hero-eyebrow" data-uz="Biznesingiz uchun moliyaviy hamkor" data-ru="Финансовый партнёр вашего бизнеса" data-en="Your business finance partner">Biznesingiz uchun moliyaviy hamkor</p>
   <h1 data-uz="Moliyangiz <span class='accent'>tartibda.</span><br>Biznesingiz o'sishda."
       data-ru="Финансы <span class='accent'>в порядке.</span><br>Бизнес растёт."
