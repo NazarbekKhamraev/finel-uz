@@ -568,6 +568,12 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 @media(max-width:360px){.hero-brand img{width:66px;height:66px}.hero-brand strong{font-size:25px}.hero-brand span{font-size:9px}header .logo img{width:30px;height:30px}}
 @media(prefers-reduced-motion:reduce){.services-motion #services .service-card-motion{opacity:1;transform:none!important;transition:none}.service-visible .card-icon{animation:none}#services .service-card-motion::before{transform:scaleX(1);transition:none}}
 
+.service-stage{position:relative}.service-progress{display:flex;align-items:center;gap:18px;margin-top:22px;max-width:290px}.service-progress-count{font-size:10px;color:var(--text-dim);letter-spacing:1px;white-space:nowrap}.service-progress-track{height:3px;background:var(--border);flex:1;overflow:hidden;border-radius:3px}.service-progress-track i{display:block;width:0;height:100%;background:var(--finel-orange);transition:width .4s ease}
+.services-pinned #services{height:240vh;padding-top:70px;padding-bottom:70px}.services-pinned .service-stage{position:sticky;top:90px}.services-pinned #services .section-label{margin-bottom:8px}.services-pinned #services h2{font-size:34px;margin-bottom:12px}.services-pinned #services .section-sub{margin-bottom:25px;font-size:13px;max-width:650px}.services-pinned #services .card{min-height:205px;padding:25px 28px}.services-pinned #services .card-icon{margin-bottom:18px;font-size:20px}.services-pinned #services .card h3{font-size:16px}.services-pinned #services .card p{font-size:12px;line-height:1.7}.services-pinned #services .service-number{top:22px;right:22px}
+.services-motion #services .service-card-motion{transition-delay:0ms}.services-motion #services .service-card-motion:not(.service-visible){pointer-events:none}.services-motion #services .service-card-motion.service-visible{pointer-events:auto}
+@media(max-width:900px){#services .grid{grid-template-columns:1fr}#services .card{min-height:200px}.service-progress{max-width:220px}.service-progress-track i{transition:width .3s}.service-stage{min-width:0}}
+@media(prefers-reduced-motion:reduce){.service-progress{display:none}}
+
 </style>
 </head>
 <body>
@@ -1466,29 +1472,35 @@ calcQuote();
 </script>
 <script>
 (() => {
- const services = document.getElementById('services');
- if (!services) return;
- const grid = services.querySelector('.grid');
- const cards = [...services.querySelectorAll('.card')];
- const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
- const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
- cards.forEach((card,index) => {
-  card.classList.add('service-card-motion');
-  card.style.setProperty('--service-delay',(index%3)*70+'ms');
+ const services=document.getElementById('services');
+ if(!services)return;
+ const grid=services.querySelector('.grid'),cards=[...services.querySelectorAll('.card')];
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),fine=window.matchMedia('(hover: hover) and (pointer: fine)');
+ const stage=document.createElement('div');stage.className='service-stage';
+ while(services.firstChild)stage.appendChild(services.firstChild);services.appendChild(stage);
+ const progress=document.createElement('div');progress.className='service-progress';progress.setAttribute('aria-hidden','true');progress.innerHTML='<span class="service-progress-count">01 / 06</span><span class="service-progress-track"><i></i></span>';stage.appendChild(progress);
+ const count=progress.querySelector('.service-progress-count'),track=progress.querySelector('i');
+ let queued=false,pinned=false;
+ if(grid)grid.classList.remove('reveal');
+ cards.forEach((card,index)=>{
+  card.classList.add('service-card-motion');card.style.setProperty('--service-delay','0ms');
   const number=document.createElement('span');number.className='service-number';number.setAttribute('aria-hidden','true');number.textContent=String(index+1).padStart(2,'0');card.appendChild(number);
   let frame=0,rx=0,ry=0;
-  card.addEventListener('pointermove',event=>{
-   if(reduced.matches||!fine.matches||event.pointerType!=='mouse')return;
-   const r=card.getBoundingClientRect();rx=-((event.clientY-r.top)/r.height-.5)*6;ry=((event.clientX-r.left)/r.width-.5)*7;
-   if(!frame)frame=requestAnimationFrame(()=>{frame=0;card.style.setProperty('--service-rx',rx+'deg');card.style.setProperty('--service-ry',ry+'deg');});
-  },{passive:true});
+  card.addEventListener('pointermove',event=>{if(reduced.matches||!fine.matches||event.pointerType!=='mouse')return;const r=card.getBoundingClientRect();rx=-((event.clientY-r.top)/r.height-.5)*6;ry=((event.clientX-r.left)/r.width-.5)*7;if(!frame)frame=requestAnimationFrame(()=>{frame=0;card.style.setProperty('--service-rx',rx+'deg');card.style.setProperty('--service-ry',ry+'deg');});},{passive:true});
   card.addEventListener('pointerleave',()=>{card.style.setProperty('--service-rx','0deg');card.style.setProperty('--service-ry','0deg');});
  });
- if(reduced.matches||!('IntersectionObserver' in window)){cards.forEach(card=>card.classList.add('service-visible'));return;}
- if(grid)grid.classList.remove('reveal');
- const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('service-visible');observer.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -15px 0px'});
- cards.forEach(card=>observer.observe(card));document.documentElement.classList.add('services-motion');
- reduced.addEventListener('change',()=>{if(reduced.matches)cards.forEach(card=>{card.classList.add('service-visible');observer.unobserve(card);});});
+ function render(){
+  queued=false;let visible=cards.length;
+  if(!reduced.matches){
+   if(pinned){const distance=Math.max(1,services.offsetHeight-stage.offsetHeight-140);const p=Math.max(0,Math.min(1,(90-services.getBoundingClientRect().top)/distance));visible=Math.min(cards.length,1+Math.floor(p*cards.length));}
+   else{visible=0;cards.forEach((card,i)=>{if(card.getBoundingClientRect().top<window.innerHeight*.48)visible=i+1;});}
+  }
+  cards.forEach((card,i)=>card.classList.toggle('service-visible',i<visible));
+  count.textContent=String(Math.max(1,visible)).padStart(2,'0')+' / 06';track.style.width=(visible/cards.length*100)+'%';
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(render);}}
+ function configure(){pinned=!reduced.matches&&window.innerWidth>=901&&window.innerHeight>=760;document.documentElement.classList.toggle('services-pinned',pinned);document.documentElement.classList.toggle('services-motion',!reduced.matches);schedule();}
+ window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',configure,{passive:true});reduced.addEventListener('change',configure);configure();
 })();
 
 </script>
