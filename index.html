@@ -605,6 +605,12 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 @media(max-width:580px){#process .steps{grid-template-columns:1fr;padding-left:24px;gap:14px}#process .steps:before,#process .steps:after{width:2px;height:100%;right:auto;transform-origin:top}#process .steps:after{transform:scaleY(var(--journey,0));background:linear-gradient(#4169e1,#ed702d,#ffd43b)}#process .step{border-radius:16px;padding:25px;display:grid;grid-template-columns:48px 1fr;column-gap:16px}#process .step-num{font-size:32px;grid-row:1/4;letter-spacing:-2px}#process .step p{font-size:13px}#process .step h3{font-size:17px}#why .why-item{grid-template-columns:44px 1fr;gap:20px;padding:25px 22px}#why .why-icon{height:44px;width:44px;font-size:19px}#why .why-item h4{font-size:18px}#why .why-item p{font-size:13px}.step-visual{margin-top:16px;height:42px}.step-visual i{max-height:42px}}
 @media(prefers-reduced-motion:reduce){.editorial-motion .editorial-item{opacity:1;transform:none;transition:none}.step-visual i{transform:none;transition:none}#why .why-icon:after{transform:none;opacity:1;transition:none}#process .steps:after{transition:none}}
 
+.editorial-stage{position:relative;min-width:0}.editorial-count{margin-top:24px;font-size:12px;letter-spacing:2px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.editorial-pinned #process,.editorial-pinned #why{height:235vh;padding-top:70px;padding-bottom:70px}.editorial-pinned .editorial-stage{position:sticky;top:90px}.editorial-pinned #process .section-sub,.editorial-pinned #why .section-sub{margin-bottom:28px}.editorial-pinned #why .why-item{padding:28px}.editorial-pinned #why .why-item p{font-size:13px}.editorial-pinned #why .why-item h4{font-size:18px}.editorial-pinned #why .why-grid{gap:16px}
+.finel-symbol{display:block;flex-shrink:0;width:48px;height:48px;border-radius:11px}.hero-brand .finel-symbol{width:100px;height:100px;border-radius:20px;box-shadow:0 8px 28px #4169e116}.hero-brand span{font-size:14px;color:var(--text);line-height:1.6}.hero-brand strong{font-size:36px}.finance-chip{font-size:14px;font-weight:700}.chip-three>span{font-size:14px;color:var(--text);font-weight:600}.chip-three{font-size:27px;padding:16px 20px}.finance-widget-label{font-size:12px;color:var(--text)}.finance-chart-key{font-size:11px;letter-spacing:.2px}.finance-document-foot,.finance-board-foot{font-size:11px;color:var(--text-dim)}.finance-brand{font-size:16px}.finance-brand>span{font-size:10px}.finance-chart-title{font-size:15px}.finance-allocation span{font-size:12px}.finance-depth{animation:none;transform:none;transform-style:flat}.finance-board{transform:none!important;will-change:auto;transform-style:flat}.finance-chart,.finance-widgets,.finance-board-head{transform:none}.finance-chip{animation:none}
+@media(max-width:900px){.finel-symbol{width:36px;height:36px;border-radius:8px}.hero-brand .finel-symbol{width:80px;height:80px;border-radius:16px}.hero-brand strong{font-size:30px}.hero-brand span{font-size:12px}.chip-three{padding:12px 14px;font-size:23px}.chip-three>span{font-size:12px}.finance-chip{font-size:12px}.finance-widget-label{font-size:11px}.finance-document-foot,.finance-board-foot{font-size:10px}.editorial-motion .editorial-item{transition-delay:0ms}#process .step{min-height:150px}.editorial-count{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.editorial-count{display:none}}
+
 </style>
 </head>
 <body>
@@ -613,7 +619,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 <!-- HEADER -->
 <header>
   <div class="logo">
-    <img src="logo-full.png" alt="FINEL Logo">
+    <svg class="finel-symbol" viewBox="0 0 100 100" role="img" aria-label="FINEL"><rect width="100" height="100" rx="18" fill="#0734df"/><svg x="20" y="12" width="60" height="76" viewBox="180 65 285 330"><image href="logo-full.png" width="640" height="640"/></svg></svg>
     <span class="logo-word">FINEL</span>
   </div>
   <nav id="nav">
@@ -636,7 +642,7 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 <!-- HERO -->
 <section class="hero">
  <div class="hero-copy">
- <div class="hero-brand"><img src="logo-full.png" alt="FINEL" width="92" height="92"><div><strong>FINEL</strong><span data-uz="Buxgalteriya · 1C · Excel · Soliq" data-ru="Бухгалтерия · 1C · Excel · Налоги" data-en="Accounting · 1C · Excel · Tax">Buxgalteriya · 1C · Excel · Soliq</span></div></div>
+ <div class="hero-brand"><svg class="finel-symbol" viewBox="0 0 100 100" role="img" aria-label="FINEL"><rect width="100" height="100" rx="18" fill="#0734df"/><svg x="20" y="12" width="60" height="76" viewBox="180 65 285 330"><image href="logo-full.png" width="640" height="640"/></svg></svg><div><strong>FINEL</strong><span data-uz="Buxgalteriya · 1C · Excel · Soliq" data-ru="Бухгалтерия · 1C · Excel · Налоги" data-en="Accounting · 1C · Excel · Tax">Buxgalteriya · 1C · Excel · Soliq</span></div></div>
  <p class="hero-eyebrow" data-uz="Biznesingiz uchun moliyaviy hamkor" data-ru="Финансовый партнёр вашего бизнеса" data-en="Your business finance partner">Biznesingiz uchun moliyaviy hamkor</p>
   <h1 data-uz="Moliyangiz <span class='accent'>tartibda.</span><br>Biznesingiz o'sishda."
       data-ru="Финансы <span class='accent'>в порядке.</span><br>Бизнес растёт."
@@ -1538,23 +1544,28 @@ calcQuote();
 <script>
 (() => {
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const items=[];
- document.querySelectorAll('#process .steps,#why .why-grid').forEach(grid=>{
-  grid.classList.remove('reveal');
-  [...grid.children].forEach((item,i)=>{
-   item.classList.add('editorial-item');item.style.setProperty('--editorial-delay',(i*130)+'ms');items.push(item);
-   if(item.classList.contains('step')){
-    const visual=document.createElement('div');visual.className='step-visual';visual.setAttribute('aria-hidden','true');
-    [20,36,28,48,42,58].forEach((height,j)=>{const bar=document.createElement('i');bar.style.setProperty('--bar',height+'px');bar.style.setProperty('--i',j);visual.appendChild(bar);});item.appendChild(visual);
-   }
-  });
+ const groups=['process','why'].map(id=>{
+  const section=document.getElementById(id),grid=section.querySelector('.steps,.why-grid');
+  grid.classList.remove('reveal');const items=[...grid.children];
+  items.forEach(item=>{item.classList.add('editorial-item');item.style.setProperty('--editorial-delay','0ms');});
+  const stage=document.createElement('div');stage.className='editorial-stage';
+  while(section.firstChild)stage.appendChild(section.firstChild);section.appendChild(stage);
+  const meter=document.createElement('div');meter.className='editorial-count';meter.setAttribute('aria-hidden','true');stage.appendChild(meter);
+  return {section,grid,items,stage,meter};
  });
- const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('editorial-in');observer.unobserve(entry.target);}});},{threshold:.18,rootMargin:'0px 0px -35px 0px'});
- items.forEach(item=>observer.observe(item));
- function preference(){document.documentElement.classList.toggle('editorial-motion',!reduced.matches);if(reduced.matches)items.forEach(item=>item.classList.add('editorial-in'));}preference();reduced.addEventListener('change',preference);
- const steps=document.querySelector('#process .steps');let pending=false;
- function render(){pending=false;if(!steps)return;const rect=steps.getBoundingClientRect();const mobile=innerWidth<=580;const progress=Math.max(0,Math.min(1,(innerHeight*.8-rect.top)/(mobile?rect.height:innerHeight*.55)));steps.style.setProperty('--journey',reduced.matches?1:progress);}
- function schedule(){if(!pending){pending=true;requestAnimationFrame(render);}}addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});schedule();
+ let pending=false,pinned=false;
+ function render(){pending=false;groups.forEach(({section,grid,items,stage,meter})=>{
+  let visible=items.length;
+  if(!reduced.matches){
+   if(pinned){const distance=Math.max(1,section.offsetHeight-stage.offsetHeight-140);const p=Math.max(0,Math.min(1,(90-section.getBoundingClientRect().top)/distance));visible=Math.min(items.length,1+Math.floor(p*items.length));}
+   else{visible=0;items.forEach((item,i)=>{if(item.getBoundingClientRect().top<innerHeight*.72)visible=i+1;});}
+  }
+  items.forEach((item,i)=>item.classList.toggle('editorial-in',i<visible));
+  meter.textContent=String(Math.max(1,visible)).padStart(2,'0')+' / 04';grid.style.setProperty('--journey',visible/items.length);
+ });}
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(render);}}
+ function configure(){pinned=!reduced.matches&&innerWidth>=901&&innerHeight>=720;document.documentElement.classList.toggle('editorial-pinned',pinned);document.documentElement.classList.toggle('editorial-motion',!reduced.matches);schedule();}
+ addEventListener('scroll',schedule,{passive:true});addEventListener('resize',configure,{passive:true});reduced.addEventListener('change',configure);configure();
 })();
 
 </script>
