@@ -546,6 +546,16 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 @media(max-width:360px){.sculpture-section{padding-left:16px;padding-right:16px}.sculpture-copy h2{font-size:30px}.sculpture-object figcaption{font-size:9px}.pcalc-head{padding-right:102px}.pcalc-sculpture{width:88px;height:88px;right:8px;top:20px}}
 @media(prefers-reduced-motion:reduce){.objects-ready .sculpture-object{opacity:1;transform:none!important;transition:none}.sculpture-float,.pcalc-sculpture{animation:none!important;transform:none}.sculpture-object{will-change:auto}}
 
+/* Reversible scroll-linked movement, rather than a timed entrance. */
+.sculpture-scroll .sculpture-section{height:210vh;padding:0 24px;overflow:visible}
+.sculpture-scroll .sculpture-scene{position:sticky;top:96px;height:calc(100svh - 130px);min-height:430px;max-height:660px;overflow:hidden;overflow:clip;padding:30px 0}
+.sculpture-scroll .sculpture-object{opacity:var(--object-opacity,1);transition:none!important;will-change:transform,opacity}
+.sculpture-scroll .sculpture-document{transform:perspective(1000px) translate3d(calc(-1 * var(--object-shift,0px)),var(--object-lift,0px),0) rotateY(var(--object-angle,0deg)) rotateZ(calc(-.2 * var(--object-angle,0deg))) scale(var(--object-scale,1))}
+.sculpture-scroll .sculpture-calculator{transform:perspective(1000px) translate3d(var(--object-shift,0px),var(--object-lift,0px),0) rotateY(calc(-1 * var(--object-angle,0deg))) rotateZ(calc(.2 * var(--object-angle,0deg))) scale(var(--object-scale,1))}
+.sculpture-scroll .sculpture-float{animation:none!important;transform:none!important}.sculpture-copy{pointer-events:auto}.sculpture-copy a{margin-top:5px}
+@media(max-width:900px){.sculpture-scroll .sculpture-section{height:190vh;padding:0 16px}.sculpture-scroll .sculpture-scene{top:76px;height:calc(100svh - 105px);min-height:480px;max-height:640px;padding:28px 4px;align-content:center;gap:28px 10px}.sculpture-scroll .sculpture-copy h2{font-size:32px;margin:14px 0}.sculpture-scroll .sculpture-copy p{font-size:13px}.sculpture-scroll .sculpture-object img{max-height:205px}.sculpture-scroll .sculpture-object figcaption{font-size:9px}.sculpture-scroll .sculpture-object{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.sculpture-object{opacity:1!important;transform:none!important;transition:none!important}.sculpture-float{animation:none!important;transform:none!important}}
+
 </style>
 </head>
 <body>
@@ -563,7 +573,6 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
     <a href="#pricing"  data-uz="Tariflar"        data-ru="Тарифы"    data-en="Pricing">Tariflar</a>
     <a href="#reviews"  data-uz="Fikrlar"         data-ru="Отзывы"    data-en="Reviews">Fikrlar</a>
     <a href="#faq"      data-uz="Savollar"        data-ru="Вопросы"   data-en="FAQ">Savollar</a>
-    <a href="#cashflow" data-uz="Pul oqimi" data-ru="Денежный поток" data-en="Cash flow">Pul oqimi</a>
   </nav>
   <div class="controls">
     <button class="btn lang-btn active" data-lang="uz" onclick="setLang('uz')">UZ</button>
@@ -652,29 +661,9 @@ html.light{--finel-soft-yellow:#fff9df}html:not(.light){--finel-soft-yellow:#242
 <section class="sculpture-section" id="finance3d" aria-label="FINEL financial workflow">
  <div class="sculpture-scene">
   <figure class="sculpture-object sculpture-document"><div class="sculpture-float"><img src="assets/documents-3d.webp" width="720" height="720" alt="" loading="lazy" decoding="async"></div><figcaption><span>01 / </span><span data-uz="Hujjatlar — tartibli hisob" data-ru="Документы — порядок в учёте" data-en="Documents, organised">Hujjatlar — tartibli hisob</span></figcaption></figure>
-  <div class="sculpture-copy"><span class="section-label" data-uz="HUJJATDAN NATIJAGACHA" data-ru="ОТ ДОКУМЕНТОВ К РЕЗУЛЬТАТУ" data-en="FROM DOCUMENTS TO CLARITY">HUJJATDAN NATIJAGACHA</span><h2 data-uz="Hisob aniq.<br>Biznes erkin." data-ru="Точный учёт.<br>Свобода для бизнеса." data-en="Clear accounts.<br>Room to grow.">Hisob aniq.<br>Biznes erkin.</h2><p data-uz="Hujjatlar, hisob-kitob va moliyaviy tahlil — biznesingiz uchun bir butun xizmat." data-ru="Документы, расчёты и финансовый анализ — единый сервис для вашего бизнеса." data-en="Documents, calculations and financial insight, brought together for your business.">Hujjatlar, hisob-kitob va moliyaviy tahlil — biznesingiz uchun bir butun xizmat.</p><a href="#cashflow" data-uz="Raqamlar bilan sinab ko‘ring ↓" data-ru="Попробуйте на своих цифрах ↓" data-en="Try your own numbers ↓">Raqamlar bilan sinab ko‘ring ↓</a></div>
+  <div class="sculpture-copy"><span class="section-label" data-uz="HUJJATDAN NATIJAGACHA" data-ru="ОТ ДОКУМЕНТОВ К РЕЗУЛЬТАТУ" data-en="FROM DOCUMENTS TO CLARITY">HUJJATDAN NATIJAGACHA</span><h2 data-uz="Hisob aniq.<br>Biznes erkin." data-ru="Точный учёт.<br>Свобода для бизнеса." data-en="Clear accounts.<br>Room to grow.">Hisob aniq.<br>Biznes erkin.</h2><p data-uz="Hujjatlar, hisob-kitob va moliyaviy tahlil — biznesingiz uchun bir butun xizmat." data-ru="Документы, расчёты и финансовый анализ — единый сервис для вашего бизнеса." data-en="Documents, calculations and financial insight, brought together for your business.">Hujjatlar, hisob-kitob va moliyaviy tahlil — biznesingiz uchun bir butun xizmat.</p><a href="#pricing" data-uz="Xizmat narxini hisoblang ↓" data-ru="Рассчитайте стоимость услуг ↓" data-en="Calculate service cost ↓">Xizmat narxini hisoblang ↓</a></div>
   <figure class="sculpture-object sculpture-calculator"><div class="sculpture-float"><img src="assets/calculator-3d.webp" width="720" height="720" alt="" loading="lazy" decoding="async"></div><figcaption><span>02 / </span><span data-uz="Hisob-kitob — aniq reja" data-ru="Расчёты — ясный план" data-en="Calculations, clearer plans">Hisob-kitob — aniq reja</span></figcaption></figure>
  </div>
-</section>
-
-<section class="section finance-lab" id="cashflow">
- <div class="section-label reveal" data-uz="RAQAMLAR BILAN ISHLANG" data-ru="РАБОТАЙТЕ С ЦИФРАМИ" data-en="EXPLORE YOUR NUMBERS">RAQAMLAR BILAN ISHLANG</div>
- <div class="lab-intro"><h2 data-uz="Pul oqimini ko‘ring.<br>Keyingi qadamni biling." data-ru="Следите за деньгами.<br>Планируйте следующий шаг." data-en="See your cash flow.<br>Know your next move.">Pul oqimini ko‘ring.<br>Keyingi qadamni biling.</h2><p data-uz="Boshlang‘ich qoldiq, tushum va to‘lovlarni kiriting. Oy oxiridagi pul holatini sodda diagrammada ko‘ring." data-ru="Введите начальный остаток, поступления и выплаты. Посмотрите остаток на конец месяца на простой диаграмме." data-en="Enter your opening balance, receipts and payments. See your month-end cash position in a simple chart.">Boshlang‘ich qoldiq, tushum va to‘lovlarni kiriting. Oy oxiridagi pul holatini sodda diagrammada ko‘ring.</p></div>
- <div class="cashflow-lab">
-  <div class="cashflow-inputs"><div class="lab-tag"><span></span><span data-uz="PUL OQIMI / 1 OY" data-ru="ДЕНЕЖНЫЙ ПОТОК / МЕСЯЦ" data-en="CASH FLOW / ONE MONTH">PUL OQIMI / 1 OY</span></div>
-   <label for="cfOpening" data-uz="Boshlang‘ich qoldiq" data-ru="Начальный остаток" data-en="Opening balance">Boshlang‘ich qoldiq</label><div class="cashflow-input"><input id="cfOpening" type="number" min="0" max="1000000" step="1" value="20" inputmode="decimal"><span data-uz="mln so‘m" data-ru="млн сум" data-en="million UZS">mln so‘m</span></div>
-   <label for="cfReceipts" data-uz="Oylik tushum" data-ru="Поступления за месяц" data-en="Monthly receipts">Oylik tushum</label><div class="cashflow-input"><input id="cfReceipts" type="number" min="0" max="1000000" step="1" value="120" inputmode="decimal"><span data-uz="mln so‘m" data-ru="млн сум" data-en="million UZS">mln so‘m</span></div>
-   <label for="cfPayments" data-uz="Oylik to‘lovlar" data-ru="Выплаты за месяц" data-en="Monthly payments">Oylik to‘lovlar</label><div class="cashflow-input"><input id="cfPayments" type="number" min="0" max="1000000" step="1" value="85" inputmode="decimal"><span data-uz="mln so‘m" data-ru="млн сум" data-en="million UZS">mln so‘m</span></div>
-   <button type="button" class="lab-reset" id="cfReset" data-uz="Namunaga qaytarish ↺" data-ru="Вернуть пример ↺" data-en="Reset example ↺">Namunaga qaytarish ↺</button>
-  </div>
-  <div class="cashflow-dashboard"><div class="cashflow-result" aria-live="polite" aria-atomic="true"><div><p data-uz="OY OXIRIDAGI QOLDIQ" data-ru="ОСТАТОК НА КОНЕЦ МЕСЯЦА" data-en="CLOSING CASH BALANCE">OY OXIRIDAGI QOLDIQ</p><strong id="cfClosing">55</strong><span data-uz=" mln so‘m" data-ru=" млн сум" data-en=" million UZS"> mln so‘m</span></div><span class="cashflow-result-icon" aria-hidden="true">↗</span></div>
-   <div class="cashflow-chart" role="img" aria-label="Pul oqimi diagrammasi"><div class="cf-column"><b id="cfValue0">20</b><div><i id="cfBar0"></i></div><span data-uz="Qoldiq" data-ru="Остаток" data-en="Opening">Qoldiq</span></div><div class="cf-column"><b id="cfValue1">120</b><div><i id="cfBar1"></i></div><span data-uz="Tushum" data-ru="Приход" data-en="Receipts">Tushum</span></div><div class="cf-column"><b id="cfValue2">85</b><div><i id="cfBar2"></i></div><span data-uz="To‘lovlar" data-ru="Выплаты" data-en="Payments">To‘lovlar</span></div><div class="cf-column"><b id="cfValue3">55</b><div><i id="cfBar3"></i></div><span data-uz="Yakuniy" data-ru="Итог" data-en="Closing">Yakuniy</span></div></div>
-   <p class="cashflow-formula" data-uz="Qoldiq + tushum − to‘lovlar = yakuniy qoldiq. Bu foyda emas, pul oqimi hisobidir." data-ru="Остаток + поступления − выплаты = итоговый остаток. Это денежный поток, а не прибыль." data-en="Opening cash + receipts − payments = closing cash. This measures cash flow, not profit.">Qoldiq + tushum − to‘lovlar = yakuniy qoldiq. Bu foyda emas, pul oqimi hisobidir.</p>
-  </div>
- </div>
- <p class="lab-note" data-uz="Namunaviy hisob. Ma’lumotlar saqlanmaydi yoki yuborilmaydi. To‘liq tahlil uchun FINEL bilan bog‘laning." data-ru="Пример расчёта. Данные не сохраняются и не отправляются. Для полного анализа свяжитесь с FINEL." data-en="An illustrative calculation. Your entries are neither saved nor sent. Contact FINEL for a full analysis.">Namunaviy hisob. Ma’lumotlar saqlanmaydi yoki yuborilmaydi. To‘liq tahlil uchun FINEL bilan bog‘laning.</p>
- <div class="report-heading"><h3 data-uz="Har oy qo‘lingizda — aniq manzara." data-ru="Каждый месяц — ясная картина." data-en="A clearer picture, every month.">Har oy qo‘lingizda — aniq manzara.</h3><a href="#contact" data-uz="Hisobotlarni muhokama qilish ↗" data-ru="Обсудить отчётность ↗" data-en="Discuss your reports ↗">Hisobotlarni muhokama qilish ↗</a></div>
- <div class="report-cards"><article><img class="report-document-art" src="assets/documents-3d.webp" width="720" height="720" alt="" loading="lazy" decoding="async" aria-hidden="true"><span class="report-icon" aria-hidden="true">↗</span><h4 data-uz="Daromad va xarajat" data-ru="Доходы и расходы" data-en="Income and expenses">Daromad va xarajat</h4><p data-uz="Natijani tushuning: daromad qayerdan keladi va xarajat qayerga ketadi." data-ru="Понимайте результат: откуда приходят доходы и на что идут расходы." data-en="Understand where your income comes from and where your money goes.">Natijani tushuning: daromad qayerdan keladi va xarajat qayerga ketadi.</p></article><article><span class="report-icon" aria-hidden="true">≋</span><h4 data-uz="Pul oqimi" data-ru="Денежный поток" data-en="Cash flow">Pul oqimi</h4><p data-uz="Tushum va to‘lovlarni kuzating. Rejalashtirishni pul holatidan boshlang." data-ru="Следите за поступлениями и выплатами. Планируйте с учётом доступных денег." data-en="Track receipts and payments. Plan around your available cash.">Tushum va to‘lovlarni kuzating. Rejalashtirishni pul holatidan boshlang.</p></article><article><span class="report-icon" aria-hidden="true">✓</span><h4 data-uz="Hisobdagi tartib" data-ru="Порядок в учёте" data-en="Organised accounts">Hisobdagi tartib</h4><p data-uz="Hujjatlar va hisoblarni bir tizimda yuriting. Xizmat tarkibi tanlangan tarifga bog‘liq." data-ru="Ведите документы и учёт в единой системе. Состав услуг зависит от выбранного тарифа." data-en="Keep documents and accounts organised. Service scope depends on your selected plan.">Hujjatlar va hisoblarni bir tizimda yuriting. Xizmat tarkibi tanlangan tarifga bog‘liq.</p></article></div>
 </section>
 
 <!-- SERVICES -->
@@ -1384,36 +1373,12 @@ calcQuote();
 })();
 
 </script>
-<script>
-(() => {
- const ids = ['cfOpening', 'cfReceipts', 'cfPayments'];
- const inputs = ids.map(id => document.getElementById(id));
- const dashboard = document.querySelector('.cashflow-dashboard');
- if (!dashboard || inputs.some(input => !input)) return;
- const format = value => new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(value);
- function calculate() {
-  const [opening, receipts, payments] = inputs.map(input => Math.min(1000000, Math.max(0, Number(input.value) || 0)));
-  const closing = Math.round((opening + receipts - payments) * 100) / 100;
-  const values = [opening, receipts, payments, closing];
-  const max = Math.max(1, ...values.map(Math.abs));
-  document.getElementById('cfClosing').textContent = format(closing);
-  dashboard.classList.toggle('is-negative', closing < 0);
-  values.forEach((value, i) => {
-   document.getElementById('cfValue' + i).textContent = format(value);
-   document.getElementById('cfBar' + i).style.height = (Math.abs(value) / max * 94) + '%';
-  });
- }
- inputs.forEach(input => { input.addEventListener('input', calculate); input.addEventListener('change', () => { input.value = Math.min(1000000, Math.max(0, Number(input.value) || 0)); calculate(); }); });
- document.getElementById('cfReset').addEventListener('click', () => { inputs.forEach((input, i) => input.value = [20,120,85][i]); calculate(); });
- calculate();
-})();
 
-</script>
 <script>
 (() => {
  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
  const targets = [
-  ['.finance-art','right'], ['.cashflow-inputs','left'], ['.cashflow-dashboard','right'],
+  ['.finance-art','right'], 
   ['.pcalc','left'], ['.report-cards article:nth-child(1)','left'], ['.report-cards article:nth-child(3)','right']
  ];
  const nodes = [];
@@ -1449,17 +1414,40 @@ calcQuote();
 })();
 
 </script>
+
 <script>
 (() => {
- const objects = [...document.querySelectorAll('.sculpture-object')];
+ const section = document.querySelector('.sculpture-section');
+ const stage = document.querySelector('.sculpture-scene');
+ if (!section || !stage) return;
  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
- if (!objects.length || reduced.matches || !('IntersectionObserver' in window)) return;
- const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{
-  if(entry.isIntersecting){entry.target.classList.add('object-visible');observer.unobserve(entry.target);}
- }),{threshold:.12,rootMargin:'0px 0px -20px 0px'});
- objects.forEach(object=>observer.observe(object));
- document.documentElement.classList.add('objects-ready');
- reduced.addEventListener('change',()=>{if(reduced.matches)objects.forEach(object=>{object.classList.add('object-visible');observer.unobserve(object);});});
+ let queued = false, enabled = false;
+ const clamp = value => Math.max(0, Math.min(1, value));
+ function render() {
+  queued = false;
+  if (!enabled) return;
+  const height = window.innerHeight;
+  const rect = section.getBoundingClientRect();
+  const top = window.innerWidth <= 900 ? 76 : 96;
+  const distance = Math.max(1, section.offsetHeight - stage.offsetHeight + height * .75 - top);
+  const progress = clamp((height * .75 - rect.top) / distance);
+  const spread = window.innerWidth <= 900 ? 100 : 270;
+  stage.style.setProperty('--object-shift', ((1-progress)*spread).toFixed(2)+'px');
+  stage.style.setProperty('--object-angle', ((1-progress)*38).toFixed(2)+'deg');
+  stage.style.setProperty('--object-scale', (.68+progress*.32).toFixed(3));
+  stage.style.setProperty('--object-opacity', (.2+progress*.8).toFixed(3));
+  stage.style.setProperty('--object-lift', ((1-progress)*35).toFixed(2)+'px');
+ }
+ function schedule() { if (!queued) { queued=true;requestAnimationFrame(render); } }
+ function configure() {
+  enabled = !reduced.matches;
+  document.documentElement.classList.toggle('sculpture-scroll',enabled);
+  schedule();
+ }
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule,{passive:true});
+ reduced.addEventListener('change',configure);
+ configure();
 })();
 
 </script>
