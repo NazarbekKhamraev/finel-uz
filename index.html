@@ -469,6 +469,26 @@ footer{padding:55px max(28px,calc((100vw - 1200px)/2)) 24px;background:var(--bg)
 @media(prefers-reduced-motion:reduce){.finance-curve,.finance-point-halo,.finance-bars i,.finance-chip{animation:none!important}.finance-board{transform:none!important;transition:none;will-change:auto}.pointer-aura{display:none}.finance-hover::after{display:none}}
 @media(hover:none),(pointer:coarse){.pointer-aura{display:none}.finance-board{transform:none!important;will-change:auto}}
 
+/* More visible cursor light and restrained 1C yellow accents. */
+:root{--finel-yellow:#ffd43b;--finel-yellow-ink:#9b7100}
+.pointer-aura{background:radial-gradient(circle,rgba(65,105,225,.30) 0%,rgba(65,105,225,.17) 18%,rgba(65,105,225,.075) 42%,transparent 69%)}
+.pointer-aura::after{content:'';position:absolute;left:calc(50% - 30px);top:calc(50% - 30px);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#ffd43b45,transparent 72%);box-shadow:0 0 28px #ffd43b18;pointer-events:none}
+html:not(.light) .pointer-aura{background:radial-gradient(circle,rgba(102,145,255,.34),rgba(65,105,225,.18) 25%,transparent 69%)}
+.chip-one{background:var(--finel-yellow);color:#473500;border-color:#e8bf29;box-shadow:0 8px 26px #d2a90020}.chip-one>span{color:#705200}
+.finance-status i{background:var(--finel-yellow);box-shadow:0 0 0 3px #ffd43b25}.finance-chart-title>span:last-child{color:var(--finel-yellow-ink)}
+.finance-bars i:nth-child(even){background:var(--finel-yellow);opacity:1}.finance-bars i{animation:finance-bar-boost 3.2s calc(var(--i) * -.38s) ease-in-out infinite}
+.finance-curve{animation:finance-line 4.8s ease-in-out infinite}.finance-point-halo{animation:finance-pulse 2s ease-in-out infinite}
+.finance-compare{stroke:#e4b617;stroke-width:2;stroke-dasharray:5 7;stroke-linecap:round;animation:finance-comparison 8s linear infinite}
+.finance-chip{animation-duration:5s}.document-check{background:#ffd43b35;color:#896400}.card:nth-child(3) .card-icon{color:var(--finel-yellow-ink)}
+.finance-mix{grid-column:1/-1;display:flex;gap:20px;align-items:center;padding:14px 16px}.finance-donut{width:78px;height:78px;flex-shrink:0;transform:rotate(-90deg)}.finance-donut circle{fill:none;stroke-width:10}.finance-donut-track{stroke:var(--border)}.finance-donut-blue{stroke:#4169e1;stroke-dasharray:132 220;animation:finance-donut 5s ease-in-out infinite;transform-origin:50px 50px}.finance-donut-gold{stroke:#ffd43b;stroke-dasharray:62 220;stroke-dashoffset:-138;animation:finance-donut 5s ease-in-out infinite;transform-origin:50px 50px}
+.finance-mix-copy{flex:1;min-width:0}.finance-mix-copy>.finance-widget-label{display:block;margin-bottom:12px}.finance-allocation{display:flex;flex-direction:column;gap:9px}.finance-allocation>div{display:flex;gap:12px;align-items:center}.finance-allocation span{font-size:8px;color:var(--text-dim);min-width:62px}.finance-allocation b{display:block;flex:1;height:5px;background:var(--border);border-radius:5px;overflow:hidden}.finance-allocation i{display:block;height:100%;width:78%;background:#4169e1;border-radius:5px;transform-origin:left;animation:finance-allocation 4s ease-in-out infinite}.finance-allocation>div:nth-child(2) i{background:#ffd43b;width:56%;animation-delay:-1.3s}.finance-allocation>div:nth-child(3) i{background:#9cb1f7;width:65%;animation-delay:-2.6s}
+@keyframes finance-bar-boost{0%,100%{transform:scaleY(.48)}45%{transform:scaleY(1)}70%{transform:scaleY(.75)}}
+@keyframes finance-comparison{to{stroke-dashoffset:-120}}
+@keyframes finance-donut{0%,100%{transform:rotate(-7deg);stroke-width:10}50%{transform:rotate(12deg);stroke-width:12}}
+@keyframes finance-allocation{0%,100%{transform:scaleX(.68)}50%{transform:scaleX(1)}}
+@media(max-width:900px){.finance-bars i{animation-duration:5s}.finance-curve{animation-duration:7s}.finance-donut-blue,.finance-donut-gold{animation-duration:7s}.finance-chip{animation:none}}
+@media(prefers-reduced-motion:reduce){.finance-bars i,.finance-curve,.finance-point-halo,.finance-compare,.finance-donut-blue,.finance-donut-gold,.finance-allocation i{animation:none!important}.pointer-aura{display:none}}
+
 </style>
 </head>
 <body>
@@ -530,6 +550,7 @@ footer{padding:55px max(28px,calc((100vw - 1200px)/2)) 24px;background:var(--bg)
      <defs><linearGradient id="finel-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4169e1" stop-opacity=".22"/><stop offset="1" stop-color="#4169e1" stop-opacity="0"/></linearGradient></defs>
      <path d="M10 30H390M10 75H390M10 120H390M10 165H390" stroke="currentColor" stroke-opacity=".09" stroke-dasharray="3 5"/>
      <path d="M10 145C45 145 45 106 80 112S125 139 150 100S195 90 220 69S265 94 295 52S350 65 390 20V175H10Z" fill="url(#finel-chart-fill)"/>
+     <path class="finance-compare" d="M10 156C60 150 70 134 110 138S170 108 215 112S280 75 320 81S365 52 390 51"/>
      <path class="finance-curve" d="M10 145C45 145 45 106 80 112S125 139 150 100S195 90 220 69S265 94 295 52S350 65 390 20" stroke="#4169e1" stroke-width="3.5" stroke-linecap="round"/>
      <circle class="finance-point-halo" cx="390" cy="20" r="11" fill="#4169e1" fill-opacity=".12"/><circle cx="390" cy="20" r="5" fill="#4169e1" stroke="white" stroke-width="2"/>
     </svg>
@@ -538,6 +559,10 @@ footer{padding:55px max(28px,calc((100vw - 1200px)/2)) 24px;background:var(--bg)
    <div class="finance-widgets">
     <div class="finance-widget"><span class="finance-widget-label" data-uz="Daromad / xarajat" data-ru="Доходы / расходы" data-en="Income / expenses">Daromad / xarajat</span><div class="finance-bars"><i style="--bar:42%;--i:0"></i><i style="--bar:67%;--i:1"></i><i style="--bar:55%;--i:2"></i><i style="--bar:82%;--i:3"></i><i style="--bar:69%;--i:4"></i><i style="--bar:95%;--i:5"></i></div></div>
     <div class="finance-widget finance-document"><span class="finance-widget-label" data-uz="Hisobotlar" data-ru="Отчётность" data-en="Reports">Hisobotlar</span><div><span class="document-lines"><i></i><i></i><i></i></span><span class="document-check">✓</span></div><span class="finance-document-foot" data-uz="Hammasi tartibda" data-ru="Всё в порядке" data-en="Everything in order">Hammasi tartibda</span></div>
+    <div class="finance-widget finance-mix">
+     <svg class="finance-donut" viewBox="0 0 100 100"><circle class="finance-donut-track" cx="50" cy="50" r="35"/><circle class="finance-donut-blue" cx="50" cy="50" r="35"/><circle class="finance-donut-gold" cx="50" cy="50" r="35"/></svg>
+     <div class="finance-mix-copy"><span class="finance-widget-label" data-uz="Tarkibiy tahlil" data-ru="Структурный анализ" data-en="Breakdown analysis">Tarkibiy tahlil</span><div class="finance-allocation"><div><span data-uz="Hisob" data-ru="Учёт" data-en="Accounts">Hisob</span><b><i></i></b></div><div><span data-uz="Soliq" data-ru="Налоги" data-en="Tax">Soliq</span><b><i></i></b></div><div><span data-uz="Rejalash" data-ru="Планирование" data-en="Planning">Rejalash</span><b><i></i></b></div></div></div>
+    </div>
    </div>
    <div class="finance-board-foot"><span data-uz="Hisob. Tahlil. Xotirjamlik." data-ru="Учёт. Анализ. Спокойствие." data-en="Accounts. Insight. Peace of mind.">Hisob. Tahlil. Xotirjamlik.</span><span data-uz="Illustratsiya" data-ru="Иллюстрация" data-en="Illustration">Illustratsiya</span></div>
   </div>
